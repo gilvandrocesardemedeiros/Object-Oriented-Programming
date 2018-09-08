@@ -97,4 +97,5 @@ int main()
             break;
         }
     } while (opcao!=0);
+    return 0;
 }

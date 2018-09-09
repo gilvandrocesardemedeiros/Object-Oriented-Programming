@@ -5,8 +5,7 @@
 
 using namespace std;
 
-int main()
-{
+int main(){
     Loja X;
     Livro L;
     CD C;
@@ -16,8 +15,7 @@ int main()
     unsigned id(0);
 
     cout << "CONTROLE DE ACERVO\n\n";
-    do
-    {
+    do{
         do{
             cout << "1/-1 - Incluir/excluir livro\n";
             cout << "2/-2 - Incluir/excluir CD\n";
@@ -31,8 +29,7 @@ int main()
         } while (opcao<-3 || opcao>6);
 
         // Entrada de dados, de acordo com a opcao
-        switch (opcao)
-        {
+        switch (opcao){
         case -3:
         case -2:
         case -1:
@@ -63,8 +60,7 @@ int main()
         }
 
         // Funcao a ser chamada, de acordo com a opcao
-        switch (opcao)
-        {
+        switch (opcao){
         case -3:
             X.excluirDVD(id);
             break;

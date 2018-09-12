@@ -10,7 +10,7 @@ using namespace std;
 istream &Produto::digitar(istream &I){
     float preco_prov;
     cout << "Entre com o nome do produto: " << endl;
-    I >> ws;
+    I.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(I, nome);
     cout << "Entre com o preco, em reais, do produto: " << endl;
     I >> preco_prov;
@@ -19,7 +19,15 @@ istream &Produto::digitar(istream &I){
 }
 
 ostream &Produto::imprimir(ostream &O) const{
-    O << '"' << nome << '"' << ";$" << (float)preco/100 << ';';
+    O << '"' << nome << '"' << ";$" << (float)preco/100;
+    if(preco % 100 == 0){
+        O << ".00";
+    }else{
+        if(preco % 10 == 0){
+            O << "0";
+        }
+    }
+    O << ';';
     return O;
 }
 
@@ -128,8 +136,6 @@ void ListaLivro::copiar(const ListaLivro &prov){
 void ListaLivro::limpar(){
     if(livros != NULL){
         delete [] livros;
-    }else{
-        cerr << "Erro: Tentativa de apagar lista vazia." << endl;
     }
 }
 
@@ -148,7 +154,7 @@ void ListaLivro::incluir(const Livro &L){
 }
 
 void ListaLivro::excluir(const unsigned &id){
-    if(id >= tam){
+    if(id >= tam || id < 0){
         cerr << "O item na lista de livros nao existe!" << endl;
         return;
     }
@@ -162,7 +168,6 @@ void ListaLivro::excluir(const unsigned &id){
     }
     delete [] livros;
     livros = prov;
-    delete [] prov;
     tam--;
 }
 
@@ -219,8 +224,6 @@ void ListaCD::copiar(const ListaCD &prov){
 void ListaCD::limpar(){
     if(cds != NULL){
         delete [] cds;
-    }else{
-        cerr << "Erro: Tentativa de apagar lista vazia." << endl;
     }
 }
 
@@ -239,7 +242,7 @@ void ListaCD::incluir(const CD &L){
 }
 
 void ListaCD::excluir(const unsigned &id){
-    if(id >= tam){
+    if(id >= tam || id < 0){
         cerr << "O item na lista de cds nao existe!" << endl;
         return;
     }
@@ -253,7 +256,6 @@ void ListaCD::excluir(const unsigned &id){
     }
     delete [] cds;
     cds = prov;
-    delete [] prov;
     tam--;
 }
 
@@ -310,8 +312,6 @@ void ListaDVD::copiar(const ListaDVD &prov){
 void ListaDVD::limpar(){
     if(dvds != NULL){
         delete [] dvds;
-    }else{
-        cerr << "Erro: Tentativa de apagar lista vazia." << endl;
     }
 }
 
@@ -330,7 +330,7 @@ void ListaDVD::incluir(const DVD &L){
 }
 
 void ListaDVD::excluir(const unsigned &id){
-    if(id >= tam){
+    if(id >= tam || id < 0){
         cerr << "O item na lista de dvds nao existe!" << endl;
         return;
     }
@@ -344,7 +344,6 @@ void ListaDVD::excluir(const unsigned &id){
     }
     delete [] dvds;
     dvds = prov;
-    delete [] prov;
     tam--;
 }
 

@@ -16,8 +16,6 @@ public:
     ostream &imprimir(ostream &O) const;
     istream &ler(istream &arq);
     inline ostream &salvar(ostream &O) const {return imprimir(O);}
-    inline string getNome() const {return nome;}
-    inline unsigned getPreco() const {return preco;}
 };
 
 inline istream &operator>>(istream &I, Produto &P) {return P.digitar(I);}
@@ -32,7 +30,6 @@ public:
     ostream &imprimir(ostream &O) const;
     istream &ler(istream &I);
     inline ostream &salvar(ostream &O) const {return imprimir(O);}
-    inline string getAutor() const {return autor;}
 };
 
 inline istream &operator>>(istream &I, Livro &X) {return X.digitar(I);}
@@ -47,7 +44,6 @@ public:
     ostream &imprimir(ostream &O) const;
     istream &ler(istream &I);
     inline ostream &salvar(ostream &O) const {return imprimir(O);}
-    inline unsigned getNumFaixas() {return numFaixas;}
 };
 
 inline istream &operator>>(istream &I, CD &X) {return X.digitar(I);}

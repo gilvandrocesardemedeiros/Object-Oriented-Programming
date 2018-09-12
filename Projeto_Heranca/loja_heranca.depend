@@ -5,11 +5,11 @@
 	<limits>
 	"loja_heranca.h"
 
-1536711036 /home/gilvandro/Downloads/Projeto_PA/loja_heranca.h
+1536766822 /home/gilvandro/Downloads/Projeto_PA/loja_heranca.h
 	<iostream>
 	<string>
 
-1536716361 source:/home/gilvandro/Downloads/Projeto_PA/loja_heranca.cpp
+1536767503 source:/home/gilvandro/Downloads/Projeto_PA/loja_heranca.cpp
 	"loja_heranca.h"
 	<iostream>
 	<fstream>

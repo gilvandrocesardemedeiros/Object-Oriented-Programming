@@ -44,7 +44,6 @@ public:
     ostream &imprimir(ostream &O) const;
     istream &ler(istream &I);
     inline ostream &salvar(ostream &O) const {return imprimir(O);}
-//    inline unsigned getNumFaixas() {return numFaixas;}
 };
 
 inline istream &operator>>(istream &I, CD &X) {return X.digitar(I);}

@@ -10,7 +10,7 @@ using namespace std;
 istream &Produto::digitar(istream &I){
     float preco_prov;
     cout << "Entre com o nome do produto: " << endl;
-    I >> ws;
+    I.ignore(numeric_limits<streamsize>::max(), '\n');
     getline(I, nome);
     cout << "Entre com o preco, em reais, do produto: " << endl;
     I >> preco_prov;
@@ -136,8 +136,6 @@ void ListaLivro::copiar(const ListaLivro &prov){
 void ListaLivro::limpar(){
     if(livros != NULL){
         delete [] livros;
-    }else{
-        cerr << "Erro: Tentativa de apagar lista vazia." << endl;
     }
 }
 
@@ -226,8 +224,6 @@ void ListaCD::copiar(const ListaCD &prov){
 void ListaCD::limpar(){
     if(cds != NULL){
         delete [] cds;
-    }else{
-        cerr << "Erro: Tentativa de apagar lista vazia." << endl;
     }
 }
 
@@ -316,8 +312,6 @@ void ListaDVD::copiar(const ListaDVD &prov){
 void ListaDVD::limpar(){
     if(dvds != NULL){
         delete [] dvds;
-    }else{
-        cerr << "Erro: Tentativa de apagar lista vazia." << endl;
     }
 }
 

@@ -11,13 +11,13 @@ private:
     string nome;
     unsigned preco;
 public:
-    inline Produto(const char *N="", const unsigned &P=0): nome(N), preco(P) {}
+    inline Produto(const char *N="", unsigned P=0): nome(N), preco(P) {}
     istream &digitar(istream &I);
     ostream &imprimir(ostream &O) const;
     istream &ler(istream &arq);
     inline ostream &salvar(ostream &O) const {return imprimir(O);}
-    friend ostream &operator<<(ostream &O, const Produto &P);
-    friend istream &operator>>(istream &I, Produto &P);
+    inline string getNome() const {return nome;}
+    inline unsigned getPreco() const {return preco;}
 };
 
 inline istream &operator>>(istream &I, Produto &P) {return P.digitar(I);}
@@ -27,14 +27,12 @@ class Livro: public Produto{
 private:
     string autor;
 public:
-    inline Livro(const char *N="", const unsigned &P=0, const char *A =""): Produto(N, P), autor(A) {}
+    inline Livro(const char *N="", unsigned P=0, const char *A =""): Produto(N, P), autor(A) {}
     istream &digitar(istream &I);
     ostream &imprimir(ostream &O) const;
     istream &ler(istream &I);
     inline ostream &salvar(ostream &O) const {return imprimir(O);}
-    friend ostream &operator<<(ostream &O, const Livro &P);
-    friend istream &operator>>(istream &I, Livro &P);
-//    friend class ListaLivro;
+    inline string getAutor() const {return autor;}
 };
 
 inline istream &operator>>(istream &I, Livro &X) {return X.digitar(I);}
@@ -44,13 +42,12 @@ class CD: public Produto{
 private:
     unsigned numFaixas;
 public:
-    inline CD(const char *N="", const unsigned &P=0, const unsigned &F = 0): Produto(N, P), numFaixas(F) {}
+    inline CD(const char *N="", unsigned P=0, unsigned F = 0): Produto(N, P), numFaixas(F) {}
     istream &digitar(istream &I);
     ostream &imprimir(ostream &O) const;
     istream &ler(istream &I);
     inline ostream &salvar(ostream &O) const {return imprimir(O);}
-    friend ostream &operator<<(ostream &O, const CD &P);
-    friend istream &operator>>(istream &I, CD &P);
+    inline unsigned getNumFaixas() {return numFaixas;}
 };
 
 inline istream &operator>>(istream &I, CD &X) {return X.digitar(I);}
@@ -60,13 +57,11 @@ class DVD: public Produto{
 private:
     unsigned duracao;
 public:
-    inline DVD(const char *N="", const unsigned &P=0, const unsigned &D = 0): Produto (N,P), duracao(D) {}
+    inline DVD(const char *N="", unsigned P=0, unsigned D = 0): Produto (N,P), duracao(D) {}
     istream &digitar(istream &I);
     ostream &imprimir(ostream &O) const;
     istream &ler(istream &I);
     inline ostream &salvar(ostream &O) const {return imprimir(O);}
-    friend ostream &operator<<(ostream &O, const DVD &P);
-    friend istream &operator>>(istream &I, DVD &P);
 };
 
 inline istream &operator>>(istream &I, DVD &X) {return X.digitar(I);}
@@ -76,10 +71,14 @@ class ListaLivro{
 private:
     Livro *livros;
     unsigned tam;
+    void criar(unsigned const &T);
+    void copiar(const ListaLivro &prov);
+    void limpar();
 public:
-    inline ListaLivro(): livros(NULL), tam(0) {}
-    inline ListaLivro(unsigned const &T): livros(new Livro [T]), tam(T) {}
-    ~ListaLivro();
+    inline ListaLivro() {criar(0);}
+    inline ListaLivro(unsigned const &T) {criar(T);}
+    inline ListaLivro(const ListaLivro &prov) {copiar(prov);}
+    inline ~ListaLivro() {limpar();}
     void incluir(const Livro &L);
     void excluir(const unsigned &id);
     void imprimir() const;
@@ -91,11 +90,16 @@ class ListaCD{
 private:
     CD *cds;
     unsigned tam;
+    void criar(unsigned const &T);
+    void copiar(const ListaCD &prov);
+    void limpar();
 public:
-    inline ListaCD(): cds(NULL), tam(0) {}
-    ~ListaCD();
+    inline ListaCD() {criar(0);}
+    inline ListaCD(unsigned const &T) {criar(T);}
+    inline ListaCD(const ListaCD &prov) {copiar(prov);}
+    inline ~ListaCD() {limpar();}
     void incluir(const CD &L);
-    void excluir(unsigned id);
+    void excluir(const unsigned &id);
     void imprimir() const;
     void ler(istream &I);
     void salvar(ostream &O) const;
@@ -104,10 +108,17 @@ public:
 class ListaDVD{
 private:
     DVD *dvds;
-    unsigned N;
+    unsigned tam;
+    void criar(unsigned const &T);
+    void copiar(const ListaDVD &prov);
+    void limpar();
 public:
+    inline ListaDVD() {criar(0);}
+    inline ListaDVD(unsigned const &T) {criar(T);}
+    inline ListaDVD(const ListaDVD &prov) {copiar(prov);}
+    inline ~ListaDVD() {limpar();};
     void incluir(const DVD &L);
-    void excluir(unsigned id);
+    void excluir(const unsigned &id);
     void imprimir() const;
     void ler(istream &I);
     void salvar(ostream &O) const;
@@ -121,11 +132,11 @@ private:
 public:
     inline Loja(): LL(), LC(), LD() {}
     inline void incluirLivro(const Livro &X) {LL.incluir(X);}
-    inline void excluirLivro(unsigned id) {LL.excluir(id);}
+    inline void excluirLivro(unsigned const &id) {LL.excluir(id);}
     inline void incluirDVD(const DVD &X) {LD.incluir(X);}
-    inline void excluirDVD(unsigned id) {LD.excluir(id);}
+    inline void excluirDVD(unsigned const &id) {LD.excluir(id);}
     inline void incluirCD(const CD &X) {LC.incluir(X);}
-    inline void excluirCD(unsigned id) {LC.excluir(id);}
+    inline void excluirCD(unsigned const &id) {LC.excluir(id);}
     void imprimir() const;
     void ler(const char* arq);
     void salvar(const char* arq) const;

@@ -12,12 +12,9 @@ istream &Produto::digitar(istream &I){
     cout << "Entre com o nome do produto: " << endl;
     I >> ws;
     getline(I, nome);
-    cout << "Entre com o preco, em centavos, do produto: " << endl;
+    cout << "Entre com o preco, em reais, do produto: " << endl;
     I >> preco_prov;
-    if((int)preco_prov != preco_prov){
-        preco_prov*=100;
-    }
-    preco = preco_prov;
+    preco = 100*preco_prov;
     return I;
 }
 
@@ -30,6 +27,7 @@ istream &Produto::ler(istream &arq){
     float preco_prov;
     arq.ignore(numeric_limits<streamsize>::max(), '"');
     getline(arq, nome, '"');
+    arq.ignore(numeric_limits<streamsize>::max(), '$');
     arq >> preco_prov;
     preco = preco_prov*100;
     return arq;
@@ -54,7 +52,7 @@ ostream &Livro::imprimir(ostream &O) const{
 
 istream &Livro::ler(istream &I){
     Produto::ler(I);
-    I >> ws;
+    I.ignore(numeric_limits<streamsize>::max(), '"');
     getline(I, autor, '"');
     return I;
 }
@@ -78,6 +76,7 @@ ostream &CD::imprimir(ostream &O) const{
 
 istream &CD::ler(istream &I){
     Produto::ler(I);
+    I.ignore(numeric_limits<streamsize>::max(), ';');
     I >> numFaixas;
     return I;
 }
@@ -101,7 +100,7 @@ ostream &DVD::imprimir(ostream &O) const{
 
 istream &DVD::ler(istream &I){
     Produto::ler(I);
-    I >> ws;
+    I.ignore(numeric_limits<streamsize>::max(), ';');
     I >> duracao;
     return I;
 }

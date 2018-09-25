@@ -1,0 +1,26 @@
+O aplicativo Sudoku foi implementado em duas versões:
+- Uma não formatada, que roda em qualquer ambiente C++.
+- Uma formatada, que executa apenas no Windows versão 10.
+Existem dois projetos Code Blocks (.cbp) para essas versões:
+- sudoku_none (sem formatação)
+- sudoku_win10 (formatado, Windows 10)
+
+Os códigos que definem a maioria dos métodos da classe Sudoku e a função main são comuns e devem ser fazer parte dos dois projetos:
+- sudoku.h
+- sudoku.cpp
+- sudoku_main.h
+- sudoku_main.cpp
+
+Para reduzir ao mínimo a duplicação de código, todas as funções que fazem impressão de dados em tela foram concentradas em arquivos específicos:
+- sudoku_form_*.cpp - definição dos métodos das classes Jogada e Sudoku que fazem impressão.
+- sudoku_main_form_*.cpp - implementação das funções auxiliares de impressão usadas no main.
+
+Portanto, para compilar a versão não formatada, o projeto deve incluir os seguintes arquivos específicos adicionais:
+- sudoku_form_none.cpp
+- sudoku_main_form_none.cpp
+
+Para a versão formatada, também é utilizada uma biblioteca de funções para controle do terminal. Daí, o projeto deve incluir os seguintes arquivos específicos adicionais:
+- console.h
+- console.cpp
+- sudoku_form_win10.cpp
+- sudoku_main_form_win10.cpp

@@ -1,6 +1,7 @@
 #ifndef _SUDOKU_H_
 #define _SUDOKU_H_
 #include <vector>
+#include <stdint.h>
 
 /// Classe que representa uma possivel jogada (coordenadas e valor)
 /// Significado dos valores:
@@ -34,19 +35,19 @@ public:
   /// Testa se a jogada indica que uma casa deve ser apagada
   inline bool apagamento() const {return (i>=0 && i<=8 && j>=0 && j<=8 && v==0);}
 
-  /// Testa se a jogada indica que o uruario quer resolver o jogo automaticamente
+  /// Testa se a jogada indica que o usuario quer resolver o jogo automaticamente
   inline bool resolver_jogo() const {return ( ((i>8 && j>=0) || (i>=0 && j>8)) && v>=1 && v<=9 );}
 
-  /// Testa se a jogada indica que o uruario quer preencher as casas faceis
+  /// Testa se a jogada indica que o usuario quer preencher as casas faceis
   inline bool preencher_jogo() const {return ( ((i>8 && j>=0) || (i>=0 && j>8)) && v==0 );}
 
-  /// Testa se a jogada indica que o uruario quer comecar um novo jogo
+  /// Testa se a jogada indica que o usuario quer comecar um novo jogo
   inline bool novo() const {return (i>=0 && i<=8 && j>=0 && j<=8 && v>9);}
 
-  /// Testa se a jogada indica que o uruario quer recomecar (voltar ao tab inicial)
+  /// Testa se a jogada indica que o usuario quer recomecar (voltar ao tab inicial)
   inline bool voltar() const {return (((i>8 && j>=0) || (i>=0 && j>8)) && v>9);}
 
-  /// Testa se a jogada indica que o uruario quer encerrar o jogo
+  /// Testa se a jogada indica que o usuario quer encerrar o jogo
   inline bool fim_de_jogo() const {return (i<0 || j<0 || v<0);}
 
   /// Fixa as coordenadas de uma jogada
@@ -58,7 +59,6 @@ public:
   /// O METODO A SEGUIR ENVOLVE FORMATACAO.
   /// O codigo deve ser diferente de acordo com o modo de exibicao
   /// Sua implementacao estah no arquivo sudoku_form_*
-
   /// Leh uma jogada do teclado
   void ler();
 

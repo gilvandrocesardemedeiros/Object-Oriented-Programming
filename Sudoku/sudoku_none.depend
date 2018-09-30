@@ -1,0 +1,30 @@
+# depslib dependency file v1.0
+1537484142 source:/home/gilvandro/Downloads/Sudoku_incompleto/sudoku.cpp
+	<iostream>
+	<cstdlib>
+	<fstream>
+	<string>
+	<stack>
+	<time.h>
+	"sudoku.h"
+
+1537972007 /home/gilvandro/Downloads/Sudoku_incompleto/sudoku.h
+	<vector>
+	<stdint.h>
+
+1537482502 source:/home/gilvandro/Downloads/Sudoku_incompleto/sudoku_form_none.cpp
+	<iostream>
+	"sudoku.h"
+
+1536964718 source:/home/gilvandro/Downloads/Sudoku_incompleto/sudoku_main.cpp
+	<iostream>
+	"sudoku.h"
+	"sudoku_main.h"
+
+1524057092 /home/gilvandro/Downloads/Sudoku_incompleto/sudoku_main.h
+
+1537482502 source:/home/gilvandro/Downloads/Sudoku_incompleto/sudoku_main_form_none.cpp
+	<iostream>
+	<cstdlib>
+	"sudoku_main.h"
+

@@ -308,17 +308,21 @@ int Sudoku::resolver_casas_faceis()
 
 bool Sudoku::resolver(bool com_exibicao)
 {
-  // Reinicializa o gerador de numeros aleatorios
-  srand(time(NULL));
-
-  // Contadores do numero de tabuleiros gerados e testados
+  ///Pilha onde serah armazenado os Sudoku possiveis
+  stack<Sudoku> tentativas;
+  ///Adicionando o Sudoku base para a pilha "tentativas"
+  tentativas.push(*this);
+  /// Contadores do numero de tabuleiros gerados e testados
   int num_tab_gerados(1), num_tab_testados(1);
-
-  // Testa se jah nao estah resolvido desde o inicio
-  if (this->fim_de_jogo()) return true;
-
-  // Melhor serah o tabuleiro encontrado com mais casas preenchidas
+  /// Melhor serah o tabuleiro encontrado com mais casas preenchidas
   Sudoku Melhor(*this);
+  ///Execute enquanto houver alguma tentativa no container
+  while(tentativas.size() > 0){
+ /* // Reinicializa o gerador de numeros aleatorios
+  srand(time(NULL));
+*/
+  /// Testa se jah nao estah resolvido desde o inicio
+  if (this->fim_de_jogo()) return true;
   // Numero de casas vazias do melhor tabuleiro ateh agora
   int num_vazias_melhor = Melhor.num_casas_vazias();
 
@@ -425,4 +429,5 @@ bool Sudoku::resolver(bool com_exibicao)
     Melhor.exibir();
   }
   return achou_solucao;
+  }
 }

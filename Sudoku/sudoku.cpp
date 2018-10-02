@@ -126,65 +126,8 @@
       arq.close();
     }
 
-  } while (resolveu_alguma);
-  if (insoluvel)
-  {
-      if (num_casas==0) return -666;
-      return (-num_casas);
-  }
-  return num_casas;
-}
-
-/// Determina automaticamente a solucao do tabuleiro (preenche as casas vazias)
-/// O parametro com_exibicao controla se o algoritmo deve (true) ou nao (false)
-/// exibir os tabuleiros analisados e o numero de nohs durante o algoritmo
-/// Retorna true se foi encontrada solucao
-
-///
-/// ATENCAO: ESSE ALGORITMO NAO EH O CORRETO!!!
-/// Eh apenas um exemplo, que tenta resolver o problema aleatoriamente
-/// Voces devem substituir pelo seu proprio algoritmo
-///
-
-bool Sudoku::resolver(bool com_exibicao)
-{
-  ///Pilha onde serah armazenado os Sudoku possiveis
-  stack<Sudoku> tentativas;
-  ///Adicionando o Sudoku base para a pilha "tentativas"
-  tentativas.push(*this);
-  /// Contadores do numero de tabuleiros gerados e testados
-  int num_tab_gerados(1), num_tab_testados(1);
-  /// Melhor serah o tabuleiro encontrado com mais casas preenchidas
-  Sudoku Melhor(*this);
-  ///Execute enquanto houver alguma tentativa no container
-  while(tentativas.size() > 0){
- /* // Reinicializa o gerador de numeros aleatorios
-  srand(time(NULL));
-*/
-  /// Testa se jah nao estah resolvido desde o inicio
-  if (this->fim_de_jogo()) return true;
-  // Numero de casas vazias do melhor tabuleiro ateh agora
-  int num_vazias_melhor = Melhor.num_casas_vazias();
-
-  // O tabuleiro em analise
-  // Comeca a busca a partir do tabuleiro inicial
-  Sudoku S(*this);
-  // Numero de casas vazias do tabuleiro em analise
-  int num_vazias;
-
-  bool achou_solucao;
-  int i,j,k;
-
-  do
-  {
-    // Escolhe a primeira casa vaga
-    i=0; j=0;
-    while (i<9 && S(i,j) != 0)
-
-
     /// Compara se dois tabuleiros sao iguais
     bool Sudoku::operator==(const Sudoku &S) const
-
     {
       for (unsigned i=0; i<9; i++) for (unsigned j=0; j<9; j++)
       {
@@ -503,17 +446,3 @@ bool Sudoku::resolver(bool com_exibicao)
           return achou_solucao;
       }
     }
-
-    // Para ao encontrar uma solucao ou ao atingir o numero maximo de nos
-  } while(!achou_solucao && num_tab_gerados<5000);
-
-  if (achou_solucao) *this = Melhor;
-  if (com_exibicao)
-  {
-    Melhor.exibir();
-  }
-  return achou_solucao;
-  }
-}
-
-

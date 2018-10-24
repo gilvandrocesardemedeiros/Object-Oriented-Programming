@@ -1,0 +1,19 @@
+# depslib dependency file v1.0
+1527015294 source:/home/gilvandro/Documentos/circuito_provisorio_codeblocks/circuito/bool3S.cpp
+	<iostream>
+	"bool3S.h"
+
+1527016662 /home/gilvandro/Documentos/circuito_provisorio_codeblocks/circuito/bool3S.h
+	<iostream>
+
+1540409564 source:/home/gilvandro/Documentos/circuito_provisorio_codeblocks/circuito/circuito-main.cpp
+	<iostream>
+	<string>
+	"portas.h"
+
+1540405442 /home/gilvandro/Documentos/circuito_provisorio_codeblocks/circuito/portas.h
+	<iostream>
+	<string>
+	<vector>
+	"bool3S.h"
+

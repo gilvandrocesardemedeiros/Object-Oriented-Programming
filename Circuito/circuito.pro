@@ -36,7 +36,10 @@ HEADERS += \
     portas.h
 
 FORMS += \
-        circuito.ui
+        circuito.ui \
+    modificarporta.ui \
+    novocircuito.ui \
+    modificarsaida.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

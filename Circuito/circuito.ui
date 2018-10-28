@@ -1,6 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
  <class>circuito</class>
- <widget class="QMainWindow" name="circuito" >
+ <widget class="QMainWindow" name="circuito">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -13,26 +14,6 @@
    <string>Simulador de Circuitos Digitais</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QListWidget" name="listWidget">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>40</y>
-      <width>231</width>
-      <height>371</height>
-     </rect>
-    </property>
-   </widget>
-   <widget class="QListWidget" name="listWidget_2">
-    <property name="geometry">
-     <rect>
-      <x>230</x>
-      <y>40</y>
-      <width>91</width>
-      <height>371</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label">
     <property name="geometry">
      <rect>
@@ -180,20 +161,10 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QListWidget" name="listWidget_3">
-    <property name="geometry">
-     <rect>
-      <x>327</x>
-      <y>20</y>
-      <width>261</width>
-      <height>391</height>
-     </rect>
-    </property>
-   </widget>
    <widget class="QLabel" name="label_4">
     <property name="geometry">
      <rect>
-      <x>327</x>
+      <x>330</x>
       <y>0</y>
       <width>261</width>
       <height>20</height>
@@ -239,6 +210,82 @@
      <bool>false</bool>
     </property>
    </widget>
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>39</y>
+      <width>231</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="autoScroll">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>230</x>
+      <y>39</y>
+      <width>91</width>
+      <height>381</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+    <property name="sizeAdjustPolicy">
+     <enum>QAbstractScrollArea::AdjustIgnored</enum>
+    </property>
+    <property name="autoScroll">
+     <bool>true</bool>
+    </property>
+    <property name="rowCount">
+     <number>2</number>
+    </property>
+    <property name="columnCount">
+     <number>1</number>
+    </property>
+    <attribute name="horizontalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderDefaultSectionSize">
+     <number>75</number>
+    </attribute>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="verticalHeaderVisible">
+     <bool>false</bool>
+    </attribute>
+    <row/>
+    <row/>
+    <column/>
+   </widget>
+   <widget class="QTableWidget" name="tableWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>330</x>
+      <y>20</y>
+      <width>261</width>
+      <height>401</height>
+     </rect>
+    </property>
+    <property name="verticalScrollBarPolicy">
+     <enum>Qt::ScrollBarAlwaysOn</enum>
+    </property>
+   </widget>
+   <zorder>label</zorder>
+   <zorder>tableWidget</zorder>
+   <zorder>tableWidget_2</zorder>
+   <zorder>tableWidget_3</zorder>
+   <zorder>label_4</zorder>
+   <zorder>label_3</zorder>
+   <zorder>label_2</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

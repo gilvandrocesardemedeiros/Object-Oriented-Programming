@@ -125,45 +125,290 @@ bool Porta_NOT::ler(istream &I){
 }
 
 bool3S Porta_NOT::simular(const bool3S in[]){
+    if(Nin != 1){
+        return UNDEF_3S;
+    }
     if(in[0] == TRUE_3S){
         saida = FALSE_3S;
         return saida;
-    }else if(in[0] == FALSE_3S){
+    }
+    if(in[0] == FALSE_3S){
         saida = TRUE_3S;
         return saida;
-    }else{
+    }
+    else{
         saida = UNDEF_3S;
         return saida;
     }
 }
 
-
-/*bool Porta::ler(istream &I){
-    string cabecalho1;
-    I >> cabecalho1;
-    if(cabecalho1 != "CIRCUITO:"){
-        return  false;
+bool3S Porta_AND::simular(const bool3S in[]){
+    switch (Nin){
+        case 2:
+            if(in[0] == FALSE_3S || in[1] == FALSE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            if(in[0] == TRUE_3S && in[1] == TRUE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        case 3:
+            if(in[0] == FALSE_3S || in[1] == FALSE_3S || in[2] == FALSE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            if(in[0] == TRUE_3S && in[1] == TRUE_3S && in[2] == TRUE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        case 4:
+            if(in[0] == FALSE_3S || in[1] == FALSE_3S || in[2] == FALSE_3S || in[3] == FALSE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            if(in[0] == TRUE_3S && in[1] == TRUE_3S && in[2] == TRUE_3S && in[3] == TRUE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        default:
+            return UNDEF_3S;
     }
-    unsigned N_inputs, N_outputs, N_portas;
-    I >> N_inputs;
-    if(N_inputs < 2 || N_inputs > 4) return false;
-    I >> N_outputs;
-    I >> N_portas;
-    // Serah que vai precisar? I >> ws;
-    string cabecalho2;
-    I >> cabecalho2;
-    if(cabecalho2 != "PORTAS:") return false;
-    for(unsigned i = 0; i < N_portas; i++){
-        unsigned indice_linha;
-        I >> ws;
-        I >> indice_linha;
-        I.ignore();
-        if(indice_linha != i+1) return  false;
-
-    }
-    Nin = N_inputs;
-    I.ignore(1,':');
-    for(unsigned i = 0 ; i < Nin ; i++)
-      I >> id_in[i];
 }
-*/
+
+bool3S Porta_NAND::simular(const bool3S in[]){
+    switch (Nin){
+        case 2:
+            if(in[0] == FALSE_3S || in[1] == FALSE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            if(in[0] == TRUE_3S && in[1] == TRUE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        case 3:
+            if(in[0] == FALSE_3S || in[1] == FALSE_3S || in[2] == FALSE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            if(in[0] == TRUE_3S && in[1] == TRUE_3S && in[2] == TRUE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        case 4:
+            if(in[0] == FALSE_3S || in[1] == FALSE_3S || in[2] == FALSE_3S || in[3] == FALSE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            if(in[0] == TRUE_3S && in[1] == TRUE_3S && in[2] == TRUE_3S && in[3] == TRUE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        default:
+            return UNDEF_3S;
+    }
+}
+
+bool3S Porta_OR::simular(const bool3S in[]){
+    switch (Nin){
+        case 2:
+            if(in[0] == TRUE_3S || in[1] == TRUE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            if(in[0] == FALSE_3S && in[1] == FALSE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        case 3:
+            if(in[0] == TRUE_3S || in[1] == TRUE_3S || in[2] == TRUE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            if(in[0] == FALSE_3S && in[1] == FALSE_3S && in[2] == FALSE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        case 4:
+            if(in[0] == TRUE_3S || in[1] == TRUE_3S || in[2] == TRUE_3S || in[3] == TRUE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            if(in[0] == FALSE_3S && in[1] == FALSE_3S && in[2] == FALSE_3S && in[3] == FALSE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        default:
+            return UNDEF_3S;
+    }
+}
+
+bool3S Porta_NOR::simular(const bool3S in[]){
+    switch (Nin){
+        case 2:
+            if(in[0] == TRUE_3S || in[1] == TRUE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            if(in[0] == FALSE_3S && in[1] == FALSE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        case 3:
+            if(in[0] == TRUE_3S || in[1] == TRUE_3S || in[2] == TRUE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            if(in[0] == FALSE_3S && in[1] == FALSE_3S && in[2] == FALSE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        case 4:
+            if(in[0] == TRUE_3S || in[1] == TRUE_3S || in[2] == TRUE_3S || in[3] == TRUE_3S){
+                saida = FALSE_3S;
+                return saida;
+            }
+            if(in[0] == FALSE_3S && in[1] == FALSE_3S && in[2] == FALSE_3S && in[3] == FALSE_3S){
+                saida = TRUE_3S;
+                return saida;
+            }
+            else{
+                saida = UNDEF_3S;
+                return saida;
+            }
+        default:
+            return UNDEF_3S;
+    }
+}
+
+bool3S Porta_XOR::simular(const bool3S in[]){
+    unsigned cont_True = 0, cont_False = 0, cont_Undef = 0;
+    if(Nin <= 0){
+        return UNDEF_3S;
+    }
+
+    for(unsigned i = 0; i < Nin; i++){
+        if(in[i] == TRUE_3S){
+            cont_True++;
+            continue;
+        }
+        if(in[i] == FALSE_3S){
+            cont_False++;
+            continue;
+        }
+        else{
+            cont_Undef++;
+            break;
+        }
+    }
+
+    if(cont_Undef > 0){
+            return UNDEF_3S;
+    }
+    else{
+        if(cont_True % 2 == 0) return FALSE_3S;
+        else return TRUE_3S;
+    }
+}
+
+bool3S Porta_NXOR::simular(const bool3S in[]){
+    unsigned cont_True = 0, cont_False = 0, cont_Undef = 0;
+    if(Nin <= 0){
+        return UNDEF_3S;
+    }
+
+    for(unsigned i = 0; i < Nin; i++){
+        if(in[i] == TRUE_3S){
+            cont_True++;
+            continue;
+        }
+        if(in[i] == FALSE_3S){
+            cont_False++;
+            continue;
+        }
+        else{
+            cont_Undef++;
+            break;
+        }
+    }
+
+    if(cont_Undef > 0){
+            return UNDEF_3S;
+    }
+    else{
+        if(cont_True % 2 == 0) return TRUE_3S;
+        else return FALSE_3S;
+    }
+}
+
+void Circuito::limpar(){
+    unsigned Nportas = getNumPortas();
+    for(unsigned i = 0; i < Nportas; i++){
+        delete portas[i];
+    }
+    inputs.clear();
+    id_out.clear();
+    portas.clear();
+}
+
+void Circuito::alocar(unsigned NI, unsigned NO, unsigned NP){
+    limpar();
+    for(unsigned i = 0; i < NI; i++) inputs.push_back(UNDEF_3S);
+    for(unsigned i = 0; i < NO; i++) id_out.push_back(0);
+    for(unsigned i = 0; i < NP; i++) portas.push_back(NULL);
+}
+
+void Circuito::copiar(const Circuito &C){
+    limpar();
+    unsigned Ninputs = C.getNumInputs();
+    unsigned Nout = C.getNumOutputs();
+    unsigned Nportas = C.getNumPortas();
+    for(unsigned i = 0; i < Ninputs; i++) inputs.push_back(C.inputs[i]);
+    for(unsigned i = 0; i < Nout; i++) id_out.push_back(C.id_out[i]);
+    for(unsigned i = 0; i < Nportas; i++) inputs.push_back(new C.portas[i]);
+}

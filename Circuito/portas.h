@@ -93,7 +93,8 @@ public:
   inline ptr_Porta clone() const {return new Porta_NOT(*this);}
   inline string getNome() const {return "NT";}
 
-  void setNumInputs(unsigned N);
+  //Posso colocar que N por default começa com valor 1??
+  void setNumInputs(unsigned N = 1);
 
   void digitar();
   bool ler(istream &I);

@@ -7,14 +7,15 @@
 using namespace std;
 
 Porta::Porta(unsigned NI){
-    //Numero de inputs nao pode ser superior ao num_max_inputs
-    if(NI > NUM_MAX_INPUTS_PORTA){
+    //Numero de inputs nao pode ser superior ao num_max_inputs nem inferior a 2
+    if(NI < 2 || NI > NUM_MAX_INPUTS_PORTA){
         for(unsigned i = 0; i < NUM_MAX_INPUTS_PORTA; i++) id_in[i] = 0;
         return;
+    }else{
+        //Declara o numero de entradas NI e inicializa todas com indice = 0
+        Nin = NI;
+        for (unsigned i = 0; i < NI; ++i) id_in[i] = 0;
     }
-    //Declara o numero de entradas NI e inicializa todas com indice = 0
-    Nin = NI;
-    for (unsigned i = 0; i < NI; ++i) id_in[i] = 0;
 }
 
 Porta::Porta(const Porta &P){
@@ -82,17 +83,59 @@ bool Porta::ler(istream &I){
 }
 
 ostream &Porta::imprimir(ostream &O) const{
-    O << Nin << ": ";
-    for(unsigned i = 0; i < Nin; i++) O <<' '<<id_in[i];
+    O << getNome() << " " << Nin << ":";
+    for(unsigned i = 0; i < Nin; i++){
+        O << " " << id_in[i];
+    }
     O << "\n";
     return O;
 }
 
 void Porta_NOT::setNumInputs(unsigned N){
-
+    if(N != 1){
+        id_in[0] = 0;
+        return;
+    }else{
+    Nin = N;
+    id_in[0] = 0;
+    }
 }
 
+void Porta_NOT::digitar(){
+    unsigned N_inputs;
+    do{
+        cout << "Numero de entradas da porta: (Porta NOT aceita apenas 1 porta) ";
+        cin >> N_inputs;
+    }while(N_inputs != 1);
+    Nin = N_inputs;
+    cout<<"id da entrada " << 1 << ": " << endl;
+    cin >> id_in[0];
+}
 
+bool Porta_NOT::ler(istream &I){
+    unsigned N_inputs;
+    I >> ws;
+    I >> N_inputs;
+    if( N_inputs != 1) return false;
+    Nin = N_inputs;
+    I.ignore(1,':');
+    I >> id_in[0];
+    if(id_in[0] == 0) return false;
+    return true;
+}
+
+bool3S Porta_NOT::simular(const bool3S in[]){
+    if(in[0] == TRUE_3S){
+        saida = FALSE_3S;
+        return saida;
+    }else if(in[0] == FALSE_3S){
+        saida = TRUE_3S;
+        return saida;
+    }else{
+        saida = UNDEF_3S;
+        return saida;
+    }
+}
 
 
 /*bool Porta::ler(istream &I){

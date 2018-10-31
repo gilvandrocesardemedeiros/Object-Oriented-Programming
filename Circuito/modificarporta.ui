@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>224</width>
-    <height>269</height>
+    <width>275</width>
+    <height>293</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>-150</x>
-     <y>230</y>
+     <x>-120</x>
+     <y>250</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -32,24 +32,24 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>20</x>
-     <y>30</y>
-     <width>171</width>
-     <height>185</height>
+     <x>13</x>
+     <y>8</y>
+     <width>241</width>
+     <height>211</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QVBoxLayout" name="bloco_instrucoes">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
+     <layout class="QHBoxLayout" name="linha_text">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="text_porta">
         <property name="text">
          <string>PORTA:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="text_numPorta">
         <property name="text">
          <string>null</string>
         </property>
@@ -58,86 +58,86 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <layout class="QHBoxLayout" name="linha_tipoPorta">
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="text_tipoPorta">
         <property name="text">
          <string>Tipo da porta:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QComboBox" name="comboBox"/>
+       <widget class="QComboBox" name="comboBox_tipoPorta"/>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <layout class="QHBoxLayout" name="linha_numEntradas">
       <item>
-       <widget class="QLabel" name="label_4">
+       <widget class="QLabel" name="text_numEntradas">
         <property name="text">
          <string>Nº de entradas:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox"/>
+       <widget class="QSpinBox" name="spinBox_numEntradas"/>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <layout class="QHBoxLayout" name="linha_entrada1">
       <item>
-       <widget class="QLabel" name="label_5">
+       <widget class="QLabel" name="text_idEntrada1">
         <property name="text">
          <string>Id da entrada 1:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox_2"/>
+       <widget class="QSpinBox" name="spinBox_idEntrada1"/>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
+     <layout class="QHBoxLayout" name="horizontalLayout_5">
       <item>
-       <widget class="QLabel" name="label_6">
+       <widget class="QLabel" name="text_idEntrada1_2">
         <property name="text">
          <string>Id da entrada 2:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox_3"/>
+       <widget class="QSpinBox" name="spinBox_idEntrada2"/>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="horizontalLayout_6">
       <item>
-       <widget class="QLabel" name="label_7">
+       <widget class="QLabel" name="text_idEntrada1_3">
         <property name="text">
          <string>Id da entrada 3:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox_4"/>
+       <widget class="QSpinBox" name="spinBox_idEntrada3"/>
       </item>
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="horizontalLayout_7">
       <item>
-       <widget class="QLabel" name="label_8">
+       <widget class="QLabel" name="text_idEntrada4">
         <property name="text">
          <string>Id da entrada 4:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox_5"/>
+       <widget class="QSpinBox" name="spinBox_idEntrada4"/>
       </item>
      </layout>
     </item>

@@ -13,8 +13,8 @@
   <property name="windowTitle">
    <string>Simulador de Circuitos Digitais</string>
   </property>
-  <widget class="QWidget" name="centralWidget">
-   <widget class="QLabel" name="label">
+  <widget class="QWidget" name="JanelaPrincipal">
+   <widget class="QLabel" name="text_circuito">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -63,7 +63,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_2">
+   <widget class="QLabel" name="text_portas">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -112,7 +112,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_3">
+   <widget class="QLabel" name="text_saidas">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -161,7 +161,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QLabel" name="label_4">
+   <widget class="QLabel" name="text_tabelaverdade">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -210,7 +210,7 @@
      <bool>false</bool>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget">
+   <widget class="QTableWidget" name="table_portas">
     <property name="geometry">
      <rect>
       <x>0</x>
@@ -226,7 +226,7 @@
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTableWidget" name="tableWidget_2">
+   <widget class="QTableWidget" name="table_saidas">
     <property name="geometry">
      <rect>
       <x>230</x>
@@ -245,7 +245,7 @@
      <bool>true</bool>
     </property>
     <property name="rowCount">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="columnCount">
      <number>1</number>
@@ -262,11 +262,9 @@
     <attribute name="verticalHeaderVisible">
      <bool>false</bool>
     </attribute>
-    <row/>
-    <row/>
     <column/>
    </widget>
-   <widget class="QTableWidget" name="tableWidget_3">
+   <widget class="QTableWidget" name="tabelaVerdade">
     <property name="geometry">
      <rect>
       <x>330</x>
@@ -279,13 +277,13 @@
      <enum>Qt::ScrollBarAlwaysOn</enum>
     </property>
    </widget>
-   <zorder>label</zorder>
-   <zorder>tableWidget</zorder>
-   <zorder>tableWidget_2</zorder>
-   <zorder>tableWidget_3</zorder>
-   <zorder>label_4</zorder>
-   <zorder>label_3</zorder>
-   <zorder>label_2</zorder>
+   <zorder>text_circuito</zorder>
+   <zorder>table_portas</zorder>
+   <zorder>table_saidas</zorder>
+   <zorder>tabelaVerdade</zorder>
+   <zorder>text_tabelaverdade</zorder>
+   <zorder>text_saidas</zorder>
+   <zorder>text_portas</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

@@ -2,6 +2,12 @@
 <ui version="4.0">
  <class>Dialog</class>
  <widget class="QDialog" name="Dialog">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -11,12 +17,12 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>Dialog</string>
+   <string>Novo Circuito</string>
   </property>
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>-140</x>
+     <x>-136</x>
      <y>130</y>
      <width>341</width>
      <height>32</height>
@@ -32,52 +38,48 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>10</x>
-     <y>30</y>
-     <width>211</width>
-     <height>80</height>
+     <x>5</x>
+     <y>13</y>
+     <width>231</width>
+     <height>111</height>
     </rect>
    </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
+   <layout class="QHBoxLayout" name="bloco_informacoes">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QVBoxLayout" name="coluna_text">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="text_entradas">
         <property name="text">
          <string>Número de entradas:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
-      <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="text_saidas">
         <property name="text">
          <string>Número de saídas:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox_2"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_3">
-      <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="text_portas">
         <property name="text">
          <string>Número de portas:</string>
         </property>
        </widget>
       </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QVBoxLayout" name="coluna_spinbox">
       <item>
-       <widget class="QSpinBox" name="spinBox_3"/>
+       <widget class="QSpinBox" name="spinBox_entradas"/>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox_saidas"/>
+      </item>
+      <item>
+       <widget class="QSpinBox" name="spinBox_portas"/>
       </item>
      </layout>
     </item>

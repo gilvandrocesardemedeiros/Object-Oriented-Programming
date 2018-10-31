@@ -3,8 +3,6 @@
 
 using namespace std;
 
-//Os operadores logicos para a classe bool3S
-
 // NOT 3S
 bool3S operator~(bool3S x)
 {
@@ -30,9 +28,7 @@ bool3S operator^(bool3S x1, bool3S x2)
 }
 
 // Os operadores de incremento/decremento para a classe bool3S
-
 // Prefixados (++B, --B: incrementa, depois retorna)
-
 bool3S& operator++(bool3S &B)
 {
     if (B==UNDEF_3S) {B=FALSE_3S; return B;}
@@ -51,7 +47,6 @@ bool3S& operator--(bool3S &B)
 
 // Posfixados (B++, B--: retorna copia do valor antes de incrementar)
 // O parametro int nao serve para nada, apenas diferencia dos prefixados
-
 bool3S operator++(bool3S &B, int)
 {
     bool3S prov(B);
@@ -67,7 +62,6 @@ bool3S operator--(bool3S &B, int)
 }
 
 // As conversoes entre bool3S e char
-
 // Converte um bool3S para um char que o representa (F T ?)
 char toChar(bool3S B)
 {
@@ -82,7 +76,6 @@ bool3S toBool_3S(char C)
 }
 
 // Os operadores de entrada/saida para a classe bool3S
-
 // Impressao de bool3S
 ostream &operator<<(ostream &O, bool3S B)
 {

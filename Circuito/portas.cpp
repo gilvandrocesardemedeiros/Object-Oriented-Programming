@@ -19,15 +19,14 @@ Porta::Porta(unsigned NI){
 }
 
 Porta::Porta(const Porta &P){
-    if(P.getNumInputs()==0) return;
+    if(P.getNumInputs() <= 0) return;
     *this = *P.clone();
 }
 
 int Porta::getId_in(unsigned i) const{
-    ///Maior ou maior ou igual???
-    if(i >= Nin) return 0;
+    if(i > Nin) return 0;
     else{
-        return id_in[i];
+        return id_in[i-1];
     }
 }
 
@@ -46,11 +45,11 @@ void Porta::setSaida(bool3S s){
 }
 
 void Porta::setId_in(unsigned i, int Id){
-    if(i >= Nin){
+    if(i > Nin){
         return;
     }
     else{
-        id_in[i] = Id;
+        id_in[i-1] = Id;
     }
 }
 
@@ -67,6 +66,15 @@ void Porta::digitar(){
     }
 }
 
+
+///PAREI AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+///
+///
+///
+///
+///
+///
+///
 bool Porta::ler(istream &I){
     unsigned N_inputs;
     I >> ws;
@@ -226,32 +234,29 @@ unsigned Circuito::getNumInputsPorta(unsigned IdPorta) const{
     return portas[IdPorta-1]->getNumInputs();
 }
 
-/*
 int Circuito::getId_inPorta(unsigned IdPorta, unsigned i) const{
     if(IdPorta > portas.size()) return 0;
     if(i > getNumInputsPorta(IdPorta)) return 0;
-    return portas[IdPorta]->getId_in(i);
+    return portas[IdPorta-1]->getId_in(i-1);
 }
 
-
-bool3S Circuito::getSaida(unsigned IdOut) const
-{
-    if(IdOut>id_out.size()) return bool3S(-1);
-    return portas[IdOut]->getSaida();
+bool3S Circuito::getSaida(unsigned IdOut) const{
+    if(IdOut > id_out.size()) return UNDEF_3S;
+    return portas[IdOut-1]->getSaida();
 }
 
-int Circuito::getIdOutput(unsigned IdOut) const
-{
-    if(IdOut>id_out.size()) return 0;
-    return id_out[IdOut];
+int Circuito::getIdOutput(unsigned IdOut) const{
+    if(IdOut > id_out.size()) return 0;
+    return id_out[IdOut-1];
 }
-bool Circuito::valido() const
-{
+
+//Falta implementar
+bool Circuito::valido() const{
 
 }
-void Circuito::setPorta(unsigned IdPorta, const string &T, unsigned NIn)
-{
-    if(IdPorta>portas.size()) return;
+
+void Circuito::setPorta(unsigned IdPorta, const string &T, unsigned NIn){
+    if(IdPorta > portas.size()) return;
     portas[IdPorta]->setNumInputs(NIn);
 }
 void Circuito::setId_inPorta(unsigned IdPorta, unsigned I, int Id) const
@@ -296,8 +301,7 @@ void Circuito::simular()
     }while(!tudo_def && alguma_def);
 }
 
-void Circuito::gerarTabela(void)
-{
+void Circuito::gerarTabela(void){
    int i;
     for(unsigned j=0; j<getNumInputs(); j++) inputs[j]=bool3S(false);
     do{
@@ -321,4 +325,3 @@ void Circuito::gerarTabela(void)
         }
     }while(i>=0);
 }
-*/

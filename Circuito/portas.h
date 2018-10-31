@@ -8,10 +8,6 @@
 
 using namespace std;
 
-//
-// A CLASSE PORTA
-//
-
 #define NUM_MAX_INPUTS_PORTA 4
 
 class Porta;
@@ -24,25 +20,20 @@ protected:
   bool3S saida;
 public:
   Porta(unsigned NI=2);
-  Porta(const Porta &);
+  Porta(const Porta &P);
   inline virtual ~Porta() {}
-
   // Essa funcao virtual pura deve criar e retornar um ponteiro para Porta que aponta para
   // uma copia de si mesma, do tipo correto.
   // Por exemplo, se for chamada com um objeto Porta_AND, retorna um ponteiro que aponta para
   // uma area que contem uma Porta_AND cujo valor eh uma copia de *this
   virtual ptr_Porta clone() const = 0;
-
   // Funcao virtual pura que retorna a sigla correta da Porta (AN, NT, OR, NX, etc.)
   virtual string getNome() const = 0;
-
   // Funcoes de consulta
   inline unsigned getNumInputs() const {return Nin;}
   inline bool3S getSaida() const {return saida;}
   int getId_in(unsigned i) const;
-
   // Funcoes de modificacao
-
   // Fixa o numero de entradas da porta como sendo N, entre 2 e
   // NUM_MAX_INPUTS_PORTA; portanto, vale para todas as portas, exceto NOT.
   // O metodo virtual setNumInputs tem que ser refeito para a NOT.
@@ -52,21 +43,18 @@ public:
   void setSaida(bool3S s);
   // Fixa a origem (id) da i-esima entrada da porta como sendo Id
   void setId_in(unsigned i, int Id);
-
   // Leh uma porta do teclado
   // Este metodo para digitar uma porta com numero variavel de entradas (entre 2 e
   // NUM_MAX_INPUTS_PORTA) vale para todas as portas, exceto NOT.
   // O metodo virtual digitar tem que ser refeito para a NOT.
   // Nao precisa ser reimplementado nas demais portas
   virtual void digitar();
-
   // Leh uma porta da stream I. Retorna true se tudo OK, false se houve erro
   // Este metodo para ler uma porta com numero variavel de entradas (entre 2 e
   // NUM_MAX_INPUTS_PORTA) vale para todas as portas, exceto NOT.
   // O metodo virtual ler tem que ser refeito para a NOT.
   // Nao precisa ser reimplementado nas demais portas
   virtual bool ler(istream &I);
-
   // Imprime a porta na ostrem O (cout ou uma stream de arquivo, tanto faz)
   // Este metodo nao eh virtual, pois pode ser feito generico de forma a servir para
   // todas as portas.
@@ -74,7 +62,6 @@ public:
   // Retorna a propria ostream O recebida como parametro de entrada, para que possa
   // ser encadeada
   ostream &imprimir(ostream &O) const;
-
   virtual bool3S simular(const bool3S in[]) = 0;
 };
 
@@ -82,23 +69,16 @@ public:
 // Serve para todas as portas (AND, NOR, etc.)
 inline ostream &operator<<(ostream &O, const Porta &X) {return (&X)->imprimir(O);};
 
-//
-// As outras PORTAS
-//
-
 class Porta_NOT: public Porta {
 public:
   inline Porta_NOT(): Porta(1) {}
   inline ~Porta_NOT() {}
   inline ptr_Porta clone() const {return new Porta_NOT(*this);}
   inline string getNome() const {return "NT";}
-
-  ///Posso colocar que N por default começa com valor 1??
+  //Posso colocar que N por default começa com valor 1??
   void setNumInputs(unsigned N = 1);
-
   void digitar();
   bool ler(istream &I);
-
   bool3S simular(const bool3S in[]);
 };
 
@@ -108,7 +88,6 @@ public:
   inline ~Porta_AND() {}
   inline ptr_Porta clone() const {return new Porta_AND(*this);}
   inline string getNome() const {return "AN";}
-
   bool3S simular(const bool3S in[]);
 };
 
@@ -118,7 +97,6 @@ public:
   inline ~Porta_NAND() {}
   inline ptr_Porta clone() const {return new Porta_NAND(*this);}
   inline string getNome() const {return "NA";}
-
   bool3S simular(const bool3S in[]);
 };
 
@@ -128,7 +106,6 @@ public:
   inline ~Porta_OR() {}
   inline ptr_Porta clone() const {return new Porta_OR(*this);}
   inline string getNome() const {return "OR";}
-
   bool3S simular(const bool3S in[]);
 };
 
@@ -138,7 +115,6 @@ public:
   inline ~Porta_NOR() {}
   inline ptr_Porta clone() const {return new Porta_NOR(*this);}
   inline string getNome() const {return "NO";}
-
   bool3S simular(const bool3S in[]);
 };
 
@@ -148,7 +124,6 @@ public:
   inline ~Porta_XOR() {}
   inline ptr_Porta clone() const {return new Porta_XOR(*this);}
   inline string getNome() const {return "XO";}
-
   bool3S simular(const bool3S in[]);
 };
 
@@ -158,13 +133,8 @@ public:
   inline ~Porta_NXOR() {}
   inline ptr_Porta clone() const {return new Porta_NXOR(*this);}
   inline string getNome() const {return "NX";}
-
   bool3S simular(const bool3S in[]);
 };
-
-//
-// A CLASSE CIRCUITO
-//
 
 class Circuito {
 private:
@@ -195,7 +165,6 @@ public:
   inline ~Circuito() {limpar();}
   // Operador de atribuicao: apenas chama as funcoes copiar e limpar
   inline void operator=(const Circuito &C) {if (this!=&C) {limpar(); copiar(C);}}
-
   // Funcoes de consulta
   // Caracteristicas do circuito
   inline unsigned getNumInputs() const {return inputs.size();}
@@ -214,7 +183,6 @@ public:
   int getIdOutput(unsigned IdOut) const;
   // Retorna true se o circuito eh valido (estah com todos os dados corretamente preenchidos)
   bool valido() const;
-
   // Funcoes de modificacao de valores
   // Caracteristicas do circuito
   // Redimensiona o circuito para passar a ter NI entradas, NO saidas e NP portas
@@ -227,7 +195,6 @@ public:
   // Caracteristicas das saidas
   // Altera a origem da saida de id "IdOut", que passa a ser "Id"
   void setIdOutput(unsigned IdOut, int Id);
-
   // Entrada dos dados de um circuito via teclado
   void digitar();
   // Entrada dos dados de um circuito via arquivo
@@ -247,7 +214,6 @@ public:
   // Imprime em tela os valores das saidas das portas ou das entradas do circuito que estao conectadas
   // aas saidas do circuito, de acordo com as variaveis id_out[i], i de 0 a Nout-1
   void imprimirSaidas(void) const;
-
   // Calcula a saida das portas do circuito para os valores de entrada que estao em inputs[i]
   void simular();
   // Calcula a saida das portas do circuito para os valores de entrada passados como parametro.

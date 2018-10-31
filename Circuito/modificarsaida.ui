@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>194</width>
-    <height>137</height>
+    <width>244</width>
+    <height>125</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>-160</x>
-     <y>80</y>
+     <x>-142</x>
+     <y>83</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -32,24 +32,24 @@
   <widget class="QWidget" name="">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>20</y>
-     <width>141</width>
-     <height>45</height>
+     <x>8</x>
+     <y>16</y>
+     <width>211</width>
+     <height>61</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout">
+     <layout class="QHBoxLayout" name="linha_saida">
       <item>
-       <widget class="QLabel" name="label">
+       <widget class="QLabel" name="text_saida">
         <property name="text">
          <string>SAÍDA:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QLabel" name="label_2">
+       <widget class="QLabel" name="text_numSaida">
         <property name="text">
          <string>null</string>
         </property>
@@ -58,16 +58,16 @@
      </layout>
     </item>
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2">
+     <layout class="QHBoxLayout" name="linha_origem">
       <item>
-       <widget class="QLabel" name="label_3">
+       <widget class="QLabel" name="text_origem">
         <property name="text">
          <string>Id da origem:</string>
         </property>
        </widget>
       </item>
       <item>
-       <widget class="QSpinBox" name="spinBox"/>
+       <widget class="QSpinBox" name="spinBox_numOrigem"/>
       </item>
      </layout>
     </item>

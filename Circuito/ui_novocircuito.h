@@ -26,77 +26,73 @@ class Ui_Dialog
 public:
     QDialogButtonBox *buttonBox;
     QWidget *widget;
-    QVBoxLayout *verticalLayout;
-    QHBoxLayout *horizontalLayout;
-    QLabel *label;
-    QSpinBox *spinBox;
-    QHBoxLayout *horizontalLayout_2;
-    QLabel *label_2;
-    QSpinBox *spinBox_2;
-    QHBoxLayout *horizontalLayout_3;
-    QLabel *label_3;
-    QSpinBox *spinBox_3;
+    QHBoxLayout *bloco_informacoes;
+    QVBoxLayout *coluna_text;
+    QLabel *text_entradas;
+    QLabel *text_saidas;
+    QLabel *text_portas;
+    QVBoxLayout *coluna_spinbox;
+    QSpinBox *spinBox_entradas;
+    QSpinBox *spinBox_saidas;
+    QSpinBox *spinBox_portas;
 
     void setupUi(QDialog *Dialog)
     {
         if (Dialog->objectName().isEmpty())
             Dialog->setObjectName(QStringLiteral("Dialog"));
+        Dialog->setWindowModality(Qt::NonModal);
+        Dialog->setEnabled(true);
         Dialog->resize(239, 167);
         buttonBox = new QDialogButtonBox(Dialog);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(-140, 130, 341, 32));
+        buttonBox->setGeometry(QRect(-136, 130, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
         widget = new QWidget(Dialog);
         widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(10, 30, 211, 80));
-        verticalLayout = new QVBoxLayout(widget);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        horizontalLayout = new QHBoxLayout();
-        horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
-        label = new QLabel(widget);
-        label->setObjectName(QStringLiteral("label"));
+        widget->setGeometry(QRect(5, 13, 231, 111));
+        bloco_informacoes = new QHBoxLayout(widget);
+        bloco_informacoes->setObjectName(QStringLiteral("bloco_informacoes"));
+        bloco_informacoes->setContentsMargins(0, 0, 0, 0);
+        coluna_text = new QVBoxLayout();
+        coluna_text->setObjectName(QStringLiteral("coluna_text"));
+        text_entradas = new QLabel(widget);
+        text_entradas->setObjectName(QStringLiteral("text_entradas"));
 
-        horizontalLayout->addWidget(label);
+        coluna_text->addWidget(text_entradas);
 
-        spinBox = new QSpinBox(widget);
-        spinBox->setObjectName(QStringLiteral("spinBox"));
+        text_saidas = new QLabel(widget);
+        text_saidas->setObjectName(QStringLiteral("text_saidas"));
 
-        horizontalLayout->addWidget(spinBox);
+        coluna_text->addWidget(text_saidas);
 
+        text_portas = new QLabel(widget);
+        text_portas->setObjectName(QStringLiteral("text_portas"));
 
-        verticalLayout->addLayout(horizontalLayout);
-
-        horizontalLayout_2 = new QHBoxLayout();
-        horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
-        label_2 = new QLabel(widget);
-        label_2->setObjectName(QStringLiteral("label_2"));
-
-        horizontalLayout_2->addWidget(label_2);
-
-        spinBox_2 = new QSpinBox(widget);
-        spinBox_2->setObjectName(QStringLiteral("spinBox_2"));
-
-        horizontalLayout_2->addWidget(spinBox_2);
+        coluna_text->addWidget(text_portas);
 
 
-        verticalLayout->addLayout(horizontalLayout_2);
+        bloco_informacoes->addLayout(coluna_text);
 
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        label_3 = new QLabel(widget);
-        label_3->setObjectName(QStringLiteral("label_3"));
+        coluna_spinbox = new QVBoxLayout();
+        coluna_spinbox->setObjectName(QStringLiteral("coluna_spinbox"));
+        spinBox_entradas = new QSpinBox(widget);
+        spinBox_entradas->setObjectName(QStringLiteral("spinBox_entradas"));
 
-        horizontalLayout_3->addWidget(label_3);
+        coluna_spinbox->addWidget(spinBox_entradas);
 
-        spinBox_3 = new QSpinBox(widget);
-        spinBox_3->setObjectName(QStringLiteral("spinBox_3"));
+        spinBox_saidas = new QSpinBox(widget);
+        spinBox_saidas->setObjectName(QStringLiteral("spinBox_saidas"));
 
-        horizontalLayout_3->addWidget(spinBox_3);
+        coluna_spinbox->addWidget(spinBox_saidas);
+
+        spinBox_portas = new QSpinBox(widget);
+        spinBox_portas->setObjectName(QStringLiteral("spinBox_portas"));
+
+        coluna_spinbox->addWidget(spinBox_portas);
 
 
-        verticalLayout->addLayout(horizontalLayout_3);
+        bloco_informacoes->addLayout(coluna_spinbox);
 
 
         retranslateUi(Dialog);
@@ -108,10 +104,10 @@ public:
 
     void retranslateUi(QDialog *Dialog)
     {
-        Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", nullptr));
-        label->setText(QApplication::translate("Dialog", "N\303\272mero de entradas:", nullptr));
-        label_2->setText(QApplication::translate("Dialog", "N\303\272mero de sa\303\255das:", nullptr));
-        label_3->setText(QApplication::translate("Dialog", "N\303\272mero de portas:", nullptr));
+        Dialog->setWindowTitle(QApplication::translate("Dialog", "Novo Circuito", nullptr));
+        text_entradas->setText(QApplication::translate("Dialog", "N\303\272mero de entradas:", nullptr));
+        text_saidas->setText(QApplication::translate("Dialog", "N\303\272mero de sa\303\255das:", nullptr));
+        text_portas->setText(QApplication::translate("Dialog", "N\303\272mero de portas:", nullptr));
     } // retranslateUi
 
 };

@@ -9,6 +9,7 @@ using namespace std;
 Porta::Porta(unsigned NI){
     //Numero de inputs nao pode ser superior ao num_max_inputs nem inferior a 2
     if(NI < 2 || NI > NUM_MAX_INPUTS_PORTA){
+        //Vale a pena / pode ser feito isso aqui?
         for(unsigned i = 0; i < NUM_MAX_INPUTS_PORTA; i++) id_in[i] = 0;
         return;
     }else{
@@ -19,7 +20,7 @@ Porta::Porta(unsigned NI){
 }
 
 Porta::Porta(const Porta &P){
-    if(P.getNumInputs() <= 0) return;
+    if(P.getNumInputs() == 0) return;
     *this = *P.clone();
 }
 
@@ -41,6 +42,7 @@ void Porta::setNumInputs(unsigned N){
 }
 
 void Porta::setSaida(bool3S s){
+    //Porque esse metodo nao pode ser inline?
     saida = s;
 }
 
@@ -66,26 +68,17 @@ void Porta::digitar(){
     }
 }
 
-
-///PAREI AQUI!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-///
-///
-///
-///
-///
-///
-///
 bool Porta::ler(istream &I){
     unsigned N_inputs;
     I >> ws;
     I >> N_inputs;
     if( N_inputs < 2 || N_inputs > 4) return false;
-    Nin = N_inputs;
     I.ignore(1,':');
-    for(unsigned i = 0; i < Nin; i++){
+    for(unsigned i = 0; i < N_inputs; i++){
         I >> id_in[i];
         if(id_in[i] == 0) return false;
     }
+    Nin = N_inputs;
     return true;
 }
 
@@ -103,7 +96,7 @@ void Porta_NOT::setNumInputs(unsigned N){
         id_in[0] = 0;
         return;
     }else{
-    Nin = N;
+    Nin = 1;
     id_in[0] = 0;
     }
 }
@@ -124,10 +117,10 @@ bool Porta_NOT::ler(istream &I){
     I >> ws;
     I >> N_inputs;
     if( N_inputs != 1) return false;
-    Nin = N_inputs;
     I.ignore(1,':');
     I >> id_in[0];
     if(id_in[0] == 0) return false;
+    Nin = 1;
     return true;
 }
 
@@ -206,22 +199,28 @@ void Circuito::limpar(){
     portas.clear();
 }
 
+//O que faz essa funcao alocar??
 void Circuito::alocar(unsigned NI, unsigned NO, unsigned NP){
     limpar();
+    if(NI < 1 || NO < 1 || NP < 1) return;
     for(unsigned i = 0; i < NI; i++) inputs.push_back(UNDEF_3S);
     for(unsigned i = 0; i < NO; i++) id_out.push_back(0);
     for(unsigned i = 0; i < NP; i++) portas.push_back(NULL);
 }
 
+
+//Esse metodo estah implementado da forma correta?
 void Circuito::copiar(const Circuito &C){
     limpar();
     unsigned Ninputs = C.getNumInputs();
     unsigned Nout = C.getNumOutputs();
     unsigned Nportas = C.getNumPortas();
+    if(Ninputs < 1 || Nout < 1 || Nportas < 1) return;
+    //Isso estah errado?
     for(unsigned i = 0; i < Ninputs; i++) inputs.push_back(C.inputs[i]);
     for(unsigned i = 0; i < Nout; i++) id_out.push_back(C.id_out[i]);
-    //Como resolver o problema de apontar para o mesmo endereco de memoria?
-    for(unsigned i = 0; i < Nportas; i++) portas.push_back(C.portas[i]);
+    //Isso aqui estah certo??
+    for(unsigned i = 0; i < Nportas; i++) portas.push_back(C.portas[i]->clone());
 }
 
 string Circuito::getNomePorta(unsigned IdPorta) const{
@@ -255,20 +254,28 @@ bool Circuito::valido() const{
 
 }
 
+//FALTA FAZER A PORTA SER DO TIPO FORNECIDO PELA STRING T!!!!
+//COMO FAZER??
 void Circuito::setPorta(unsigned IdPorta, const string &T, unsigned NIn){
     if(IdPorta > portas.size()) return;
-    portas[IdPorta]->setNumInputs(NIn);
+    portas[IdPorta-1]->setNumInputs(NIn);
 }
+
 void Circuito::setId_inPorta(unsigned IdPorta, unsigned I, int Id) const
 {
-    if(IdPorta > portas.size() || I > portas[IdPorta]->getNumInputs() || unsigned(abs(Id)) > portas.size() || unsigned(abs(Id)) > inputs.size()) return;
-    portas[IdPorta]->setId_in(I,Id);
+    if(IdPorta < 1 || I < 1) return;
+    if(IdPorta > portas.size() || I > portas[IdPorta-1]->getNumInputs()) return;
+    if(unsigned(abs(Id)) > portas[Id-1]->getNumInputs()) return;
+    portas[IdPorta-1]->setId_in(I,Id);
 }
+
 void Circuito::setIdOutput(unsigned IdOut, int Id)
 {
     if(IdOut > id_out.size() || unsigned(abs(Id)) > portas.size() || unsigned(abs(Id)) > inputs.size()) return;
     id_out[IdOut] = Id;
+
 }
+
 void Circuito::simular()
 {
     for(unsigned i=0; i<getNumPortas(); i++) portas[i]->setSaida(UNDEF_3S);

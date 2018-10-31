@@ -199,27 +199,20 @@ void Circuito::limpar(){
     portas.clear();
 }
 
-//O que faz essa funcao alocar??
 void Circuito::alocar(unsigned NI, unsigned NO, unsigned NP){
-    limpar();
     if(NI < 1 || NO < 1 || NP < 1) return;
     for(unsigned i = 0; i < NI; i++) inputs.push_back(UNDEF_3S);
     for(unsigned i = 0; i < NO; i++) id_out.push_back(0);
     for(unsigned i = 0; i < NP; i++) portas.push_back(NULL);
 }
 
-
-//Esse metodo estah implementado da forma correta?
 void Circuito::copiar(const Circuito &C){
-    limpar();
     unsigned Ninputs = C.getNumInputs();
     unsigned Nout = C.getNumOutputs();
     unsigned Nportas = C.getNumPortas();
     if(Ninputs < 1 || Nout < 1 || Nportas < 1) return;
-    //Isso estah errado?
     for(unsigned i = 0; i < Ninputs; i++) inputs.push_back(C.inputs[i]);
     for(unsigned i = 0; i < Nout; i++) id_out.push_back(C.id_out[i]);
-    //Isso aqui estah certo??
     for(unsigned i = 0; i < Nportas; i++) portas.push_back(C.portas[i]->clone());
 }
 
@@ -254,8 +247,6 @@ bool Circuito::valido() const{
 
 }
 
-//FALTA FAZER A PORTA SER DO TIPO FORNECIDO PELA STRING T!!!!
-//COMO FAZER??
 void Circuito::setPorta(unsigned IdPorta, const string &T, unsigned NIn){
     if(IdPorta > portas.size()) return;
     portas[IdPorta-1]->setNumInputs(NIn);

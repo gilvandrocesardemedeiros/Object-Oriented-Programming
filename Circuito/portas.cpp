@@ -242,11 +242,12 @@ int Circuito::getIdOutput(unsigned IdOut) const{
     return id_out[IdOut-1];
 }
 
-//Falta implementar
+//Falta implementar!!
 bool Circuito::valido() const{
 
 }
 
+//Falta implementar!!
 void Circuito::setPorta(unsigned IdPorta, const string &T, unsigned NIn){
     if(IdPorta > portas.size()) return;
     portas[IdPorta-1]->setNumInputs(NIn);
@@ -266,6 +267,42 @@ void Circuito::setIdOutput(unsigned IdOut, int Id)
     id_out[IdOut] = Id;
 
 }
+
+//Falta implementar!!
+void Circuito::digitar(){
+
+}
+
+//Falta implementar!!
+bool Circuito::ler(const string &arq){
+
+}
+
+//Falta implementar!!
+ostream &Circuito::imprimir(ostream &O) const{
+
+}
+
+//Falta implementar!!
+bool Circuito::salvar(const string &arq) const{
+
+}
+//Falta implementar!!
+void Circuito::digitarEntradas(){
+
+}
+
+//Falta implementar!!
+void Circuito::imprimirEntradas(void) const{
+
+}
+//Falta implementar!!
+void Circuito::imprimirSaidas(void) const{
+
+}
+//Falta implementar!!
+//Falta implementar!!
+
 
 void Circuito::simular()
 {
@@ -297,6 +334,15 @@ void Circuito::simular()
 
         }
     }while(!tudo_def && alguma_def);
+}
+
+//Falta implementar!!
+bool Circuito::simular(vector<bool3S> Inputs){
+    if(Inputs.size() != getNumInputs()) return false;
+        for(unsigned i=0; i < getNumInputs(); i++){
+            inputs[i] = Inputs[i];
+        }
+    return true;
 }
 
 void Circuito::gerarTabela(void){

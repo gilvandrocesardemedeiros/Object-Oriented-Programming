@@ -2,6 +2,8 @@
 #define CIRCUITO_H
 
 #include <QMainWindow>
+#include <QLabel>
+#include "newcircuito.h"
 
 namespace Ui {
 class circuito;
@@ -15,8 +17,18 @@ public:
     explicit circuito(QWidget *parent = nullptr);
     ~circuito();
 
+private slots:
+    void on_actionNovo_triggered();
+
+    void on_actionSair_triggered();
+
+    void on_actionLer_triggered();
+
+    void on_actionSalvar_triggered();
+
 private:
     Ui::circuito *ui;
+    NewCircuito newCircuito;        //
 };
 
 #endif // CIRCUITO_H

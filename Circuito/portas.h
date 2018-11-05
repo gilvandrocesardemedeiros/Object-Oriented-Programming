@@ -227,5 +227,5 @@ public:
 // Operador de impressao da classe Circuito
 // Utiliza o metodo imprimir
 inline ostream &operator<<(ostream &O, const Circuito &C) {return C.imprimir(O);}
-
+extern Circuito C;
 #endif // _CIRCUITO_H_

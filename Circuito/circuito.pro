@@ -28,18 +28,26 @@ SOURCES += \
         main.cpp \
         circuito.cpp \
     bool3S.cpp \
-    portas.cpp
+    portas.cpp \
+    newcircuito.cpp \
+    erro.cpp \
+    circuitovalido.cpp
 
 HEADERS += \
         circuito.h \
     bool3S.h \
-    portas.h
+    portas.h \
+    newcircuito.h \
+    erro.h \
+    circuitovalido.h
 
 FORMS += \
         circuito.ui \
     modificarporta.ui \
-    novocircuito.ui \
-    modificarsaida.ui
+    modificarsaida.ui \
+    newcircuito.ui \
+    erro.ui \
+    circuitovalido.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

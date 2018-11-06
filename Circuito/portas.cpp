@@ -62,7 +62,6 @@ Porta::Porta(const Porta &P){
 }
 
 int Porta::getId_in(unsigned i) const{
-//    if(i > NUM_MAX_INPUTS_PORTA) return 0;
     if(i > Nin) return 0;
     else return id_in[i-1];
 }
@@ -102,11 +101,11 @@ bool Porta::ler(istream &I){
     I >> N_inputs;
     if( N_inputs < 2 || N_inputs > 4) return false;
     else{
-        I.ignore(numeric_limits<streamsize>::max(),':');
+        I.ignore(2,' ');
         for(unsigned i = 0; i < N_inputs; i++){
             int prov;
             I >> prov;
-            if(prov < -1*(C.getNumInputs()) || prov > C.getNumPortas()) return false;
+            if(prov < int(C.getNumInputs())*(-1) || prov > int(C.getNumPortas()) || prov == 0) return false;
             else id_in[i] = prov;
         }
     }
@@ -146,13 +145,15 @@ bool Porta_NOT::ler(istream &I){
     I >> N_inputs;
     if( N_inputs != 1) return false;
     else{
-        I.ignore(numeric_limits<streamsize>::max(),':');
+        I.ignore(2,' ');
         int prov;
         I >> prov;
-        if(prov < -1*(C.getNumInputs()) || prov > C.getNumPortas()) return false;
-        id_in[0] = prov;
-        Nin = 1;
-        return true;
+        if(prov < int(C.getNumInputs())*(-1) || prov > int(C.getNumPortas()) || prov == 0) return false;
+        else{
+            id_in[0] = prov;
+            Nin = 1;
+            return true;
+        }
     }
 }
 
@@ -224,7 +225,7 @@ bool3S Porta_NXOR::simular(const bool3S in[]){
 void Circuito::limpar(){
     unsigned Nportas = getNumPortas();
     for(unsigned i = 0; i < Nportas; i++){
-        delete portas[i];
+        if(portas[i] != NULL) delete portas[i];
     }
     inputs.clear();
     id_out.clear();
@@ -243,6 +244,7 @@ void Circuito::copiar(const Circuito &C){
     unsigned Nout = C.getNumOutputs();
     unsigned Nportas = C.getNumPortas();
     if(Ninputs < 1 || Nout < 1 || Nportas < 1) return;
+    redimensionar(Ninputs, Nout, Nportas);
     for(unsigned i = 0; i < Ninputs; i++) inputs.push_back(C.inputs[i]);
     for(unsigned i = 0; i < Nout; i++) id_out.push_back(C.id_out[i]);
     for(unsigned i = 0; i < Nportas; i++) portas.push_back(C.portas[i]->clone());
@@ -261,7 +263,7 @@ unsigned Circuito::getNumInputsPorta(unsigned IdPorta) const{
 int Circuito::getId_inPorta(unsigned IdPorta, unsigned i) const{
     if(IdPorta > portas.size()) return 0;
     if(i > getNumInputsPorta(IdPorta)) return 0;
-    return portas[IdPorta-1]->getId_in(i-1);
+    return portas[IdPorta-1]->getId_in(i);
 }
 
 bool3S Circuito::getSaida(unsigned IdOut) const{
@@ -279,37 +281,35 @@ bool Circuito::valido() const{
         if(inputs[i] != UNDEF_3S || inputs[i] != FALSE_3S || inputs[i] != TRUE_3S) return false;
     }
     for(unsigned i = 0; i < id_out.size(); i++){
-        if(id_out[i] < (-inputs.size()) || id_out[i] > portas.size() || id_out[i] == 0) return false;
+        if(id_out[i] < -1*int(inputs.size()) || id_out[i] > int(portas.size()) || id_out[i] == 0) return false;
     }
     for(unsigned i = 0; i < portas.size(); i++){
         unsigned numPortas = portas[i]->getNumInputs();
         for(unsigned j = 0; j < numPortas; j++){
-            if(portas[i]->getId_in(j)==0) return false;
+            if(portas[i]->getId_in(j) == 0) return false;
         }
     }
     return true;
 }
 
 void Circuito::setPorta(unsigned IdPorta, const string &T, unsigned NIn){
-    if(IdPorta>portas.size() || IdPorta == 0) return;
+    if(IdPorta > portas.size() || IdPorta == 0) return;
     if(!string_valida(T)) return;
     if(T == "NT" && NIn != 1) return;
     if((NIn < 2 || NIn > NUM_MAX_INPUTS_PORTA)) return;
     portas[IdPorta-1] = aloca(T);
 }
 
-void Circuito::setId_inPorta(unsigned IdPorta, unsigned I, int Id) const
-{
+void Circuito::setId_inPorta(unsigned IdPorta, unsigned I, int Id) const{
     if(IdPorta < 1 || I < 1 || Id == 0) return;
     if(IdPorta > portas.size() || I > portas[IdPorta-1]->getNumInputs()) return;
-    if(Id < (-1*inputs.size()) || Id > inputs.size()) return;
+    if(Id < -1*int(inputs.size()) || Id > int(portas.size())) return;
     portas[IdPorta-1]->setId_in(I,Id);
 }
 
-void Circuito::setIdOutput(unsigned IdOut, int Id)
-{
+void Circuito::setIdOutput(unsigned IdOut, int Id){
     if(IdOut > id_out.size() || IdOut == 0) return;
-    if(Id > -1*inputs.size() || Id > portas.size()) return;
+    if(Id < -1*int(inputs.size()) || Id > int(portas.size())) return;
     id_out[IdOut-1] = Id;
 }
 
@@ -319,7 +319,6 @@ void Circuito::digitar(){
 }
 
 bool Circuito::ler(const string &arq){
-    limpar();
     ifstream arquivo(arq);
     if(!arquivo.is_open()) return false;
     string prov;
@@ -327,10 +326,10 @@ bool Circuito::ler(const string &arq){
     if(prov != "CIRCUITO") return false;
     else{
         unsigned Num_inputs, Num_outputs, Num_portas;
-        arquivo.ignore(numeric_limits<streamsize>::max(), ':');
         arquivo >> Num_inputs >> Num_outputs >> Num_portas;
-        this->alocar(Num_inputs, Num_outputs, Num_portas);
-        getline(arquivo,prov,':');
+        redimensionar(Num_inputs, Num_outputs, Num_portas);
+        arquivo.ignore(numeric_limits<streamsize>::max(), '\n');
+        getline(arquivo, prov, ':');
         if(prov != "PORTAS") return false;
         else{
             for(unsigned i = 0; i < Num_portas; i++){
@@ -339,28 +338,28 @@ bool Circuito::ler(const string &arq){
             if(id != i+1) return false;
             arquivo.ignore(numeric_limits<streamsize>::max(), ' ');
             string nome;
-            getline(arquivo,nome,' ');
+            arquivo >> nome;
             ptr_Porta p = aloca(nome);
             if(p == NULL) return false;
-            portas[i] = p;
             bool ok = p->ler(arquivo);
+            portas[i] = p;
             if(!ok) {
-                this->limpar();
-                //return false;
-                    }
-                }
+                limpar();
+                return false;
             }
-        arquivo.ignore(numeric_limits<streamsize>::max(), '\n');
-        getline(arquivo,prov,':');
+        }
+    }
+    arquivo.ignore(numeric_limits<streamsize>::max(), '\n');
+    getline(arquivo, prov, ':');
         if(prov != "SAIDAS") return false;
         else{
-            for(unsigned i=0; i<Num_outputs; i++){
+            for(unsigned i = 0; i < Num_outputs; i++){
             int id;
-            arquivo>>id;
+            arquivo >> id;
             if(id!=i+1) return false;
-            arquivo.ignore(numeric_limits<streamsize>::max(), ')');
-            arquivo>>id;
-            if(id < -(getNumInputs()) || id > getNumPortas()) return false;
+            arquivo.ignore(numeric_limits<streamsize>::max(), ' ');
+            arquivo >> id;
+            if(id < -1*int(getNumInputs()) || id > getNumPortas() || id == 0) return false;
                 id_out[i] = id;
             }
         }
@@ -406,9 +405,8 @@ void Circuito::simular(){
                 int IdAux;
                 for(unsigned j = 0; j < getNumInputsPorta(i); j++){
                     IdAux = portas[i]->getId_in(j);
-                    if(IdAux < 0) in_porta[j] = inputs[(-IdAux)-1];
-                    in_porta[i] = inputs[i];
-                    in_porta[j] = portas[IdAux]->getSaida();
+                    if(IdAux < 0) in_porta[j] = inputs[(-1*IdAux)-1];
+                    else in_porta[j] = portas[IdAux]->getSaida();
                 }
                 portas[i]->simular(in_porta);
                 delete [] in_porta;
@@ -421,7 +419,7 @@ void Circuito::simular(){
 
 bool Circuito::simular(vector<bool3S> Inputs){
     if(Inputs.size() != getNumInputs()) return false;
-        for(unsigned i=0; i<getNumInputs(); i++){
+        for(unsigned i = 0; i < getNumInputs(); i++){
             inputs[i] = Inputs[i];
         }
     simular();
@@ -438,13 +436,9 @@ void Circuito::gerarTabela(void){
             inputs[unsigned(i)] = FALSE_3S;
             i--;
         }
-        if(i>=0){
-            if(inputs[unsigned(i)] == FALSE_3S){
-                inputs[unsigned(i)] = TRUE_3S;
-            }
-            else{
-                inputs[unsigned(i)] = UNDEF_3S;
-            }
+        if(i >= 0){
+            if(inputs[unsigned(i)] == FALSE_3S) inputs[unsigned(i)] = TRUE_3S;
+            else inputs[unsigned(i)] = UNDEF_3S;
         }
     }while(i>=0);
 }

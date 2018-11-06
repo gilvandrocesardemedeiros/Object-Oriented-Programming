@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'modificarporta.ui'
 **
-** Created by: Qt User Interface Compiler version 5.11.0
+** Created by: Qt User Interface Compiler version 5.11.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -14,188 +14,151 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDialog>
 #include <QtWidgets/QDialogButtonBox>
-#include <QtWidgets/QHBoxLayout>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QSpinBox>
 #include <QtWidgets/QVBoxLayout>
-#include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
 
-class Ui_Dialog
+class Ui_ModificarPorta
 {
 public:
+    QVBoxLayout *verticalLayout;
+    QGridLayout *gridLayout;
+    QLabel *labelPorta;
+    QLabel *labelIdPorta;
+    QLabel *labelTipoPorta;
+    QComboBox *comboTipoPorta;
+    QLabel *labelNumInputs;
+    QSpinBox *spinNumInputs;
+    QLabel *labelInput1;
+    QSpinBox *spinInput1;
+    QLabel *labelInput2;
+    QSpinBox *spinInput2;
+    QLabel *labelInput3;
+    QSpinBox *spinInput3;
+    QLabel *labelInput4;
+    QSpinBox *spinInput4;
     QDialogButtonBox *buttonBox;
-    QWidget *widget;
-    QVBoxLayout *bloco_instrucoes;
-    QHBoxLayout *linha_text;
-    QLabel *text_porta;
-    QLabel *text_numPorta;
-    QHBoxLayout *linha_tipoPorta;
-    QLabel *text_tipoPorta;
-    QComboBox *comboBox_tipoPorta;
-    QHBoxLayout *linha_numEntradas;
-    QLabel *text_numEntradas;
-    QSpinBox *spinBox_numEntradas;
-    QHBoxLayout *linha_entrada1;
-    QLabel *text_idEntrada1;
-    QSpinBox *spinBox_idEntrada1;
-    QHBoxLayout *horizontalLayout_5;
-    QLabel *text_idEntrada1_2;
-    QSpinBox *spinBox_idEntrada2;
-    QHBoxLayout *horizontalLayout_6;
-    QLabel *text_idEntrada1_3;
-    QSpinBox *spinBox_idEntrada3;
-    QHBoxLayout *horizontalLayout_7;
-    QLabel *text_idEntrada4;
-    QSpinBox *spinBox_idEntrada4;
 
-    void setupUi(QDialog *Dialog)
+    void setupUi(QDialog *ModificarPorta)
     {
-        if (Dialog->objectName().isEmpty())
-            Dialog->setObjectName(QStringLiteral("Dialog"));
-        Dialog->resize(275, 293);
-        buttonBox = new QDialogButtonBox(Dialog);
+        if (ModificarPorta->objectName().isEmpty())
+            ModificarPorta->setObjectName(QStringLiteral("ModificarPorta"));
+        ModificarPorta->resize(174, 225);
+        verticalLayout = new QVBoxLayout(ModificarPorta);
+        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
+        gridLayout = new QGridLayout();
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        labelPorta = new QLabel(ModificarPorta);
+        labelPorta->setObjectName(QStringLiteral("labelPorta"));
+
+        gridLayout->addWidget(labelPorta, 0, 0, 1, 1);
+
+        labelIdPorta = new QLabel(ModificarPorta);
+        labelIdPorta->setObjectName(QStringLiteral("labelIdPorta"));
+
+        gridLayout->addWidget(labelIdPorta, 0, 1, 1, 1);
+
+        labelTipoPorta = new QLabel(ModificarPorta);
+        labelTipoPorta->setObjectName(QStringLiteral("labelTipoPorta"));
+
+        gridLayout->addWidget(labelTipoPorta, 1, 0, 1, 1);
+
+        comboTipoPorta = new QComboBox(ModificarPorta);
+        comboTipoPorta->setObjectName(QStringLiteral("comboTipoPorta"));
+
+        gridLayout->addWidget(comboTipoPorta, 1, 1, 1, 1);
+
+        labelNumInputs = new QLabel(ModificarPorta);
+        labelNumInputs->setObjectName(QStringLiteral("labelNumInputs"));
+
+        gridLayout->addWidget(labelNumInputs, 2, 0, 1, 1);
+
+        spinNumInputs = new QSpinBox(ModificarPorta);
+        spinNumInputs->setObjectName(QStringLiteral("spinNumInputs"));
+        spinNumInputs->setMinimum(1);
+        spinNumInputs->setMaximum(4);
+
+        gridLayout->addWidget(spinNumInputs, 2, 1, 1, 1);
+
+        labelInput1 = new QLabel(ModificarPorta);
+        labelInput1->setObjectName(QStringLiteral("labelInput1"));
+
+        gridLayout->addWidget(labelInput1, 3, 0, 1, 1);
+
+        spinInput1 = new QSpinBox(ModificarPorta);
+        spinInput1->setObjectName(QStringLiteral("spinInput1"));
+
+        gridLayout->addWidget(spinInput1, 3, 1, 1, 1);
+
+        labelInput2 = new QLabel(ModificarPorta);
+        labelInput2->setObjectName(QStringLiteral("labelInput2"));
+
+        gridLayout->addWidget(labelInput2, 4, 0, 1, 1);
+
+        spinInput2 = new QSpinBox(ModificarPorta);
+        spinInput2->setObjectName(QStringLiteral("spinInput2"));
+
+        gridLayout->addWidget(spinInput2, 4, 1, 1, 1);
+
+        labelInput3 = new QLabel(ModificarPorta);
+        labelInput3->setObjectName(QStringLiteral("labelInput3"));
+
+        gridLayout->addWidget(labelInput3, 5, 0, 1, 1);
+
+        spinInput3 = new QSpinBox(ModificarPorta);
+        spinInput3->setObjectName(QStringLiteral("spinInput3"));
+
+        gridLayout->addWidget(spinInput3, 5, 1, 1, 1);
+
+        labelInput4 = new QLabel(ModificarPorta);
+        labelInput4->setObjectName(QStringLiteral("labelInput4"));
+
+        gridLayout->addWidget(labelInput4, 6, 0, 1, 1);
+
+        spinInput4 = new QSpinBox(ModificarPorta);
+        spinInput4->setObjectName(QStringLiteral("spinInput4"));
+
+        gridLayout->addWidget(spinInput4, 6, 1, 1, 1);
+
+
+        verticalLayout->addLayout(gridLayout);
+
+        buttonBox = new QDialogButtonBox(ModificarPorta);
         buttonBox->setObjectName(QStringLiteral("buttonBox"));
-        buttonBox->setGeometry(QRect(-120, 250, 341, 32));
         buttonBox->setOrientation(Qt::Horizontal);
         buttonBox->setStandardButtons(QDialogButtonBox::Cancel|QDialogButtonBox::Ok);
-        widget = new QWidget(Dialog);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(13, 8, 241, 211));
-        bloco_instrucoes = new QVBoxLayout(widget);
-        bloco_instrucoes->setObjectName(QStringLiteral("bloco_instrucoes"));
-        bloco_instrucoes->setContentsMargins(0, 0, 0, 0);
-        linha_text = new QHBoxLayout();
-        linha_text->setObjectName(QStringLiteral("linha_text"));
-        text_porta = new QLabel(widget);
-        text_porta->setObjectName(QStringLiteral("text_porta"));
+        buttonBox->setCenterButtons(true);
 
-        linha_text->addWidget(text_porta);
-
-        text_numPorta = new QLabel(widget);
-        text_numPorta->setObjectName(QStringLiteral("text_numPorta"));
-
-        linha_text->addWidget(text_numPorta);
+        verticalLayout->addWidget(buttonBox);
 
 
-        bloco_instrucoes->addLayout(linha_text);
+        retranslateUi(ModificarPorta);
+        QObject::connect(buttonBox, SIGNAL(accepted()), ModificarPorta, SLOT(accept()));
+        QObject::connect(buttonBox, SIGNAL(rejected()), ModificarPorta, SLOT(reject()));
 
-        linha_tipoPorta = new QHBoxLayout();
-        linha_tipoPorta->setObjectName(QStringLiteral("linha_tipoPorta"));
-        text_tipoPorta = new QLabel(widget);
-        text_tipoPorta->setObjectName(QStringLiteral("text_tipoPorta"));
-
-        linha_tipoPorta->addWidget(text_tipoPorta);
-
-        comboBox_tipoPorta = new QComboBox(widget);
-        comboBox_tipoPorta->setObjectName(QStringLiteral("comboBox_tipoPorta"));
-
-        linha_tipoPorta->addWidget(comboBox_tipoPorta);
-
-
-        bloco_instrucoes->addLayout(linha_tipoPorta);
-
-        linha_numEntradas = new QHBoxLayout();
-        linha_numEntradas->setObjectName(QStringLiteral("linha_numEntradas"));
-        text_numEntradas = new QLabel(widget);
-        text_numEntradas->setObjectName(QStringLiteral("text_numEntradas"));
-
-        linha_numEntradas->addWidget(text_numEntradas);
-
-        spinBox_numEntradas = new QSpinBox(widget);
-        spinBox_numEntradas->setObjectName(QStringLiteral("spinBox_numEntradas"));
-
-        linha_numEntradas->addWidget(spinBox_numEntradas);
-
-
-        bloco_instrucoes->addLayout(linha_numEntradas);
-
-        linha_entrada1 = new QHBoxLayout();
-        linha_entrada1->setObjectName(QStringLiteral("linha_entrada1"));
-        text_idEntrada1 = new QLabel(widget);
-        text_idEntrada1->setObjectName(QStringLiteral("text_idEntrada1"));
-
-        linha_entrada1->addWidget(text_idEntrada1);
-
-        spinBox_idEntrada1 = new QSpinBox(widget);
-        spinBox_idEntrada1->setObjectName(QStringLiteral("spinBox_idEntrada1"));
-
-        linha_entrada1->addWidget(spinBox_idEntrada1);
-
-
-        bloco_instrucoes->addLayout(linha_entrada1);
-
-        horizontalLayout_5 = new QHBoxLayout();
-        horizontalLayout_5->setObjectName(QStringLiteral("horizontalLayout_5"));
-        text_idEntrada1_2 = new QLabel(widget);
-        text_idEntrada1_2->setObjectName(QStringLiteral("text_idEntrada1_2"));
-
-        horizontalLayout_5->addWidget(text_idEntrada1_2);
-
-        spinBox_idEntrada2 = new QSpinBox(widget);
-        spinBox_idEntrada2->setObjectName(QStringLiteral("spinBox_idEntrada2"));
-
-        horizontalLayout_5->addWidget(spinBox_idEntrada2);
-
-
-        bloco_instrucoes->addLayout(horizontalLayout_5);
-
-        horizontalLayout_6 = new QHBoxLayout();
-        horizontalLayout_6->setObjectName(QStringLiteral("horizontalLayout_6"));
-        text_idEntrada1_3 = new QLabel(widget);
-        text_idEntrada1_3->setObjectName(QStringLiteral("text_idEntrada1_3"));
-
-        horizontalLayout_6->addWidget(text_idEntrada1_3);
-
-        spinBox_idEntrada3 = new QSpinBox(widget);
-        spinBox_idEntrada3->setObjectName(QStringLiteral("spinBox_idEntrada3"));
-
-        horizontalLayout_6->addWidget(spinBox_idEntrada3);
-
-
-        bloco_instrucoes->addLayout(horizontalLayout_6);
-
-        horizontalLayout_7 = new QHBoxLayout();
-        horizontalLayout_7->setObjectName(QStringLiteral("horizontalLayout_7"));
-        text_idEntrada4 = new QLabel(widget);
-        text_idEntrada4->setObjectName(QStringLiteral("text_idEntrada4"));
-
-        horizontalLayout_7->addWidget(text_idEntrada4);
-
-        spinBox_idEntrada4 = new QSpinBox(widget);
-        spinBox_idEntrada4->setObjectName(QStringLiteral("spinBox_idEntrada4"));
-
-        horizontalLayout_7->addWidget(spinBox_idEntrada4);
-
-
-        bloco_instrucoes->addLayout(horizontalLayout_7);
-
-
-        retranslateUi(Dialog);
-        QObject::connect(buttonBox, SIGNAL(accepted()), Dialog, SLOT(accept()));
-        QObject::connect(buttonBox, SIGNAL(rejected()), Dialog, SLOT(reject()));
-
-        QMetaObject::connectSlotsByName(Dialog);
+        QMetaObject::connectSlotsByName(ModificarPorta);
     } // setupUi
 
-    void retranslateUi(QDialog *Dialog)
+    void retranslateUi(QDialog *ModificarPorta)
     {
-        Dialog->setWindowTitle(QApplication::translate("Dialog", "Dialog", nullptr));
-        text_porta->setText(QApplication::translate("Dialog", "PORTA:", nullptr));
-        text_numPorta->setText(QApplication::translate("Dialog", "null", nullptr));
-        text_tipoPorta->setText(QApplication::translate("Dialog", "Tipo da porta:", nullptr));
-        text_numEntradas->setText(QApplication::translate("Dialog", "N\302\272 de entradas:", nullptr));
-        text_idEntrada1->setText(QApplication::translate("Dialog", "Id da entrada 1:", nullptr));
-        text_idEntrada1_2->setText(QApplication::translate("Dialog", "Id da entrada 2:", nullptr));
-        text_idEntrada1_3->setText(QApplication::translate("Dialog", "Id da entrada 3:", nullptr));
-        text_idEntrada4->setText(QApplication::translate("Dialog", "Id da entrada 4:", nullptr));
+        ModificarPorta->setWindowTitle(QApplication::translate("ModificarPorta", "Dialog", nullptr));
+        labelPorta->setText(QApplication::translate("ModificarPorta", "PORTA:", nullptr));
+        labelIdPorta->setText(QString());
+        labelTipoPorta->setText(QApplication::translate("ModificarPorta", "Tipo da porta:", nullptr));
+        labelNumInputs->setText(QApplication::translate("ModificarPorta", "N\302\272 de entradas:", nullptr));
+        labelInput1->setText(QApplication::translate("ModificarPorta", "Id da entrada 1:", nullptr));
+        labelInput2->setText(QApplication::translate("ModificarPorta", "Id da entrada 2:", nullptr));
+        labelInput3->setText(QApplication::translate("ModificarPorta", "Id da entrada 3:", nullptr));
+        labelInput4->setText(QApplication::translate("ModificarPorta", "Id da entrada 4:", nullptr));
     } // retranslateUi
 
 };
 
 namespace Ui {
-    class Dialog: public Ui_Dialog {};
+    class ModificarPorta: public Ui_ModificarPorta {};
 } // namespace Ui
 
 QT_END_NAMESPACE

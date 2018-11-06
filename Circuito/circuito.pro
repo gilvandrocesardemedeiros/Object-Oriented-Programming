@@ -31,7 +31,9 @@ SOURCES += \
     portas.cpp \
     newcircuito.cpp \
     erro.cpp \
-    circuitovalido.cpp
+    circuitovalido.cpp \
+    modificarporta.cpp \
+    modificarsaida.cpp
 
 HEADERS += \
         circuito.h \
@@ -39,7 +41,9 @@ HEADERS += \
     portas.h \
     newcircuito.h \
     erro.h \
-    circuitovalido.h
+    circuitovalido.h \
+    modificarporta.h \
+    modificarsaida.h
 
 FORMS += \
         circuito.ui \

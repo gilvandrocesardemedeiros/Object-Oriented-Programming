@@ -1,155 +1,125 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>Dialog</class>
- <widget class="QDialog" name="Dialog">
+ <class>ModificarPorta</class>
+ <widget class="QDialog" name="ModificarPorta">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>275</width>
-    <height>293</height>
+    <width>174</width>
+    <height>225</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>Dialog</string>
   </property>
-  <widget class="QDialogButtonBox" name="buttonBox">
-   <property name="geometry">
-    <rect>
-     <x>-120</x>
-     <y>250</y>
-     <width>341</width>
-     <height>32</height>
-    </rect>
-   </property>
-   <property name="orientation">
-    <enum>Qt::Horizontal</enum>
-   </property>
-   <property name="standardButtons">
-    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
-   </property>
-  </widget>
-  <widget class="QWidget" name="">
-   <property name="geometry">
-    <rect>
-     <x>13</x>
-     <y>8</y>
-     <width>241</width>
-     <height>211</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="bloco_instrucoes">
-    <item>
-     <layout class="QHBoxLayout" name="linha_text">
-      <item>
-       <widget class="QLabel" name="text_porta">
-        <property name="text">
-         <string>PORTA:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLabel" name="text_numPorta">
-        <property name="text">
-         <string>null</string>
-        </property>
-       </widget>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="linha_tipoPorta">
-      <item>
-       <widget class="QLabel" name="text_tipoPorta">
-        <property name="text">
-         <string>Tipo da porta:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QComboBox" name="comboBox_tipoPorta"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="linha_numEntradas">
-      <item>
-       <widget class="QLabel" name="text_numEntradas">
-        <property name="text">
-         <string>Nº de entradas:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_numEntradas"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="linha_entrada1">
-      <item>
-       <widget class="QLabel" name="text_idEntrada1">
-        <property name="text">
-         <string>Id da entrada 1:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_idEntrada1"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_5">
-      <item>
-       <widget class="QLabel" name="text_idEntrada1_2">
-        <property name="text">
-         <string>Id da entrada 2:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_idEntrada2"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_6">
-      <item>
-       <widget class="QLabel" name="text_idEntrada1_3">
-        <property name="text">
-         <string>Id da entrada 3:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_idEntrada3"/>
-      </item>
-     </layout>
-    </item>
-    <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_7">
-      <item>
-       <widget class="QLabel" name="text_idEntrada4">
-        <property name="text">
-         <string>Id da entrada 4:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QSpinBox" name="spinBox_idEntrada4"/>
-      </item>
-     </layout>
-    </item>
-   </layout>
-  </widget>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="0" column="0">
+      <widget class="QLabel" name="labelPorta">
+       <property name="text">
+        <string>PORTA:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="1">
+      <widget class="QLabel" name="labelIdPorta">
+       <property name="text">
+        <string/>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLabel" name="labelTipoPorta">
+       <property name="text">
+        <string>Tipo da porta:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QComboBox" name="comboTipoPorta"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLabel" name="labelNumInputs">
+       <property name="text">
+        <string>Nº de entradas:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QSpinBox" name="spinNumInputs">
+       <property name="minimum">
+        <number>1</number>
+       </property>
+       <property name="maximum">
+        <number>4</number>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QLabel" name="labelInput1">
+       <property name="text">
+        <string>Id da entrada 1:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QSpinBox" name="spinInput1"/>
+     </item>
+     <item row="4" column="0">
+      <widget class="QLabel" name="labelInput2">
+       <property name="text">
+        <string>Id da entrada 2:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QSpinBox" name="spinInput2"/>
+     </item>
+     <item row="5" column="0">
+      <widget class="QLabel" name="labelInput3">
+       <property name="text">
+        <string>Id da entrada 3:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QSpinBox" name="spinInput3"/>
+     </item>
+     <item row="6" column="0">
+      <widget class="QLabel" name="labelInput4">
+       <property name="text">
+        <string>Id da entrada 4:</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QSpinBox" name="spinInput4"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <widget class="QDialogButtonBox" name="buttonBox">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="standardButtons">
+      <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+     </property>
+     <property name="centerButtons">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections>
   <connection>
    <sender>buttonBox</sender>
    <signal>accepted()</signal>
-   <receiver>Dialog</receiver>
+   <receiver>ModificarPorta</receiver>
    <slot>accept()</slot>
    <hints>
     <hint type="sourcelabel">
@@ -165,7 +135,7 @@
   <connection>
    <sender>buttonBox</sender>
    <signal>rejected()</signal>
-   <receiver>Dialog</receiver>
+   <receiver>ModificarPorta</receiver>
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
